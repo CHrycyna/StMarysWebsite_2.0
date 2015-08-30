@@ -1,0 +1,5 @@
+#Settings Files
+.DS_Store
+CONTRIBUTING.md
+build*
+composer*

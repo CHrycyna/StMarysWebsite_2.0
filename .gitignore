@@ -1,5 +1,9 @@
 #Settings Files
 .DS_Store
+.settings
+.project
 CONTRIBUTING.md
 build*
 composer*
+.buildpath
+tmp

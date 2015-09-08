@@ -6,4 +6,5 @@ CONTRIBUTING.md
 build*
 composer*
 .buildpath
-tmp/*
+tmp/cache/*
+tmp/logs/*

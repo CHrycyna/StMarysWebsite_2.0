@@ -112,7 +112,7 @@
 	                                </a>
 	                                <ul class="dropdown-menu">
 	                                	<li class="dropdown-submenu">
-	                                        <a href="javascript:void(0);">Garden Center</a>
+	                                        <a href="javascript:void(0);">Greenhouse</a>
 	                                        <ul class="dropdown-menu">
 			                                    <li><a href="perennials.html">Perennials </a></li>
 			                                    <li><a href="annuals.html">Annuals </a></li>
@@ -165,16 +165,32 @@
 	                            </li>
 	                            <!-- End Landscaping -->
 	
-	                            <!-- Blog -->
-	                            <li><a href="/blog.html"> Blog</a></li>
-	                            <!-- End Blog -->
-		                            
-		                        <!-- Events -->
-	                            <li><a href="/events.html"> Events</a></li>
-	                            <!-- End Events -->
-	                            
-                            	<!-- About Us -->
-	                            <li><a href="/events.html"> About Us</a></li>
+								<!-- About Us -->
+								<li class="dropdown">
+	                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+	                                    About Us
+	                                </a>
+	                                <ul class="dropdown-menu">
+                                	    <li><a href="our_experience.html">Blog</a></li>	
+                                	    <li><a href="who_are_we.html">Event Calendar</a></li>
+	                                	<li><a href="job_opportunities.html">Job Opportunities</a></li>
+	                                	<li><a href="contact_us.html">Contact Us</a></li>
+	                                </ul>
+	                            </li>
+	                            <!-- End About Us -->
+	
+	                            <!-- About Us -->
+								<li class="dropdown">
+	                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+	                                    About Us
+	                                </a>
+	                                <ul class="dropdown-menu">
+                                	    <li><a href="who_are_we.html">Who Are We</a></li>
+                                	    <li><a href="our_experience.html">Our Experience</a></li>	
+	                                	<li><a href="job_opportunities.html">Job Opportunities</a></li>
+	                                	<li><a href="contact_us.html">Contact Us</a></li>
+	                                </ul>
+	                            </li>
 	                            <!-- End About Us -->
 	                        </ul>
 	                    </div>

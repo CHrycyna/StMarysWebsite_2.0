@@ -78,7 +78,7 @@
 	                    <!-- Navbar Brand -->
 	                    <div class="navbar-brand">
 	                        <a href="index.html">
-	                            <img class="shrink-logo" src="img/unify/logo1-default.png" alt="Logo">
+	                            <img class="shrink-logo" src="/img/unify/logo1-default.png" alt="Logo">
 	                        </a>
 	                    </div>
 	                    <!-- ENd Navbar Brand -->
@@ -168,13 +168,11 @@
 								<!-- About Us -->
 								<li class="dropdown">
 	                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-	                                    About Us
+	                                    Community
 	                                </a>
 	                                <ul class="dropdown-menu">
                                 	    <li><a href="our_experience.html">Blog</a></li>	
                                 	    <li><a href="who_are_we.html">Event Calendar</a></li>
-	                                	<li><a href="job_opportunities.html">Job Opportunities</a></li>
-	                                	<li><a href="contact_us.html">Contact Us</a></li>
 	                                </ul>
 	                            </li>
 	                            <!-- End About Us -->
@@ -185,8 +183,8 @@
 	                                    About Us
 	                                </a>
 	                                <ul class="dropdown-menu">
-                                	    <li><a href="who_are_we.html">Who Are We</a></li>
-                                	    <li><a href="our_experience.html">Our Experience</a></li>	
+                                	    <li><a href="WhoAreWe">Who Are We</a></li>
+                                	    <li><a href="OurExperience">Our Experience</a></li>	
 	                                	<li><a href="job_opportunities.html">Job Opportunities</a></li>
 	                                	<li><a href="contact_us.html">Contact Us</a></li>
 	                                </ul>
@@ -247,14 +245,14 @@
 	                        <div class="heading-footer"><h2>Recent Blog Entries</h2></div>
 	                        <ul class="list-unstyled thumb-news">
 	                            <li>
-	                                <img class="radius-3x" src="img/Unify/thumb/01.jpg" alt="">
+	                                <img class="radius-3x" src="/img/Unify/thumb/01.jpg" alt="">
 	                                <div class="overflow-h">
 	                                    <a href="#">Praesent ut consectetur diam.</a>
 	                                    <small>12 June, 2014</small>
 	                                </div>
 	                            </li>
 	                            <li>
-	                                <img class="radius-3x" src="img/Unify/thumb/02.jpg" alt="">
+	                                <img class="radius-3x" src="/img/Unify/thumb/02.jpg" alt="">
 	                                <div class="overflow-h">
 	                                    <a href="#">Maecenas pharetra tellus et fringilla.</a>
 	                                    <small>12 June, 2014</small>

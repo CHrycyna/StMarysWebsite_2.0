@@ -24,7 +24,11 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
+ // Static Pages URL's
 	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
+	Router::connect('/WhoAreWe', array('controller' => 'pages', 'action' => 'display', 'who_are_we'));
+	Router::connect('/OurExperience', array('controller' => 'pages', 'action' => 'display', 'our_experience'));
+	
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */

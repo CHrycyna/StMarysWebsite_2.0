@@ -73,7 +73,7 @@ class DATABASE_CONFIG {
 		'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'chrycyna',
-		'password' => 'Kbq38wse',
+		'password' => '',
 		'database' => 'StMarysWebsite',
 		'prefix' => 'csy_',
 		'port' => '3306',

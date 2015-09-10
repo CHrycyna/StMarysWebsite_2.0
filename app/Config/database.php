@@ -72,7 +72,7 @@ class DATABASE_CONFIG {
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'chrycyna',
+		'login' => 'root',
 		'password' => '',
 		'database' => 'StMarysWebsite',
 		'prefix' => 'csy_',

@@ -59,7 +59,7 @@
     <?php echo $this->Html->css('custom.css');?>
 	<?php echo $this->fetch('css');	?>
 </head>
-<body class="header-fixed">
+<body class="header-fixed header-fixed-space">
 	<div class="wrapper">
 		<!--=== Header v6 ===-->
     	<div class="header-v6 header-classic-white header-sticky">
@@ -171,7 +171,7 @@
 	                                    Community
 	                                </a>
 	                                <ul class="dropdown-menu">
-                                	    <li><a href="our_experience.html">Blog</a></li>	
+                                	    <li><a href="posts">Blog</a></li>	
                                 	    <li><a href="who_are_we.html">Event Calendar</a></li>
 	                                </ul>
 	                            </li>
@@ -200,6 +200,9 @@
 	    <!--=== End Header v6 ===-->
     	
     	<?php echo $this->fetch('content'); ?>
+		
+		<?php echo $this->element('sql_dump'); ?>
+		
 		
 		<div id="footer-v5" class="footer-v5">
 	        <div class="footer">
@@ -300,7 +303,6 @@
 	        </div>
 	    </div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
 	
 	<!-- JS Global Compulsory -->
     <?php echo $this->Html->script('plugins/jquery/jquery.min.js');?>

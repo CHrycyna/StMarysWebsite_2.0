@@ -37,7 +37,7 @@ class AppController extends Controller {
 		$this->loadModel('Post');
 		$this->set('fPosts', $this->Post->find('all', array(
 				'order' => array('Post.created DESC'),
-				'limit' => 3,
+				'limit' => 2,
 		)) );
 	}
 }

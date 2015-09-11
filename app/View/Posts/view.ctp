@@ -10,6 +10,8 @@
     </div>
 </div><!--/breadcrumbs-->
 <!--=== End Breadcrumbs ===-->
+
+<?php var_dump($tags); ?>
     
 <!--=== Content Part ===-->
 <div class="container content blog-page blog-item">		
@@ -25,7 +27,11 @@
             <ul class="list-unstyled list-inline blog-info">
                 <li><i class="fa fa-calendar"></i> <?php echo date("F j, Y",strtotime($post['Post']['created'])); ?></li>
                 <li><i class="fa fa-pencil"></i> <?php echo $post['Post']['author']; ?></li>
-            	<li><i class="fa fa-tags"></i> Technology, Education, Internet, Media</li>
+            	<li><i class="fa fa-tags"></i> 
+            	<?php foreach($tags as $tag) {
+            		echo $tag['csy_tags'] . ", ";
+            	}?>
+            	</li>
         	</ul>                    
         </div>
 		<?php echo h($post['Post']['body']); ?>

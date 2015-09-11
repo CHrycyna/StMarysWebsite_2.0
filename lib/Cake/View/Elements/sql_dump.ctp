@@ -33,15 +33,26 @@ if ($noLogs):
 	endforeach;
 endif;
 
-if ($noLogs || isset($_forced_from_dbo_)):
+if ($noLogs || isset($_forced_from_dbo_)): 
 	foreach ($sqlLogs as $source => $logInfo):
-		$text = $logInfo['count'] > 1 ? 'queries' : 'query';
+		$text = $logInfo['count'] > 1 ? 'queries' : 'query';		
+	?>
+	
+	<div class="panel panel-green margin-bottom-40">
+		<div class="panel-heading">
+			<h3 class="panel-title">Cake SQL Log</h3>
+		</div>
+		<div class="panel-body">
+		<?php 
 		printf(
-			'<table class="cake-sql-log" id="cakeSqlLog_%s" summary="Cake SQL Log" cellspacing="0">',
+			'<table class="table" id="cakeSqlLog_%s" summary="Cake SQL Log" cellspacing="0">',
 			preg_replace('/[^A-Za-z0-9_]/', '_', uniqid(time(), true))
 		);
-		printf('<caption>(%s) %s %s took %s ms</caption>', $source, $logInfo['count'], $text, $logInfo['time']);
-	?>
+		
+		printf('<p>(%s) %s %s took %s ms</p>', $source, $logInfo['count'], $text, $logInfo['time']);
+		
+		?>
+		
 	<thead>
 		<tr><th>Nr</th><th>Query</th><th>Error</th><th>Affected</th><th>Num. rows</th><th>Took (ms)</th></tr>
 	</thead>
@@ -75,6 +86,8 @@ if ($noLogs || isset($_forced_from_dbo_)):
 		endforeach;
 	?>
 	</tbody></table>
+		</div>
+	</div>
 	<?php
 	endforeach;
 else:

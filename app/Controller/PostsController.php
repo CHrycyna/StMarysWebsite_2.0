@@ -20,12 +20,7 @@ class PostsController extends AppController {
 		}
 		$this->set('post', $post);
 		
-		$tags = $this->Post->query("
-				SELECT csy_tags.tag 
-				FROM csy_tags 
-				INNER JOIN csy_posts_tags on csy_tags.id = csy_posts_tags.tag_id 
-				WHERE csy_posts_tags.post_id = ". $id
-				);
+		$tags = "";
 		$this->set('tags', $tags);
 	}
 }

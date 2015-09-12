@@ -11,7 +11,6 @@
 </div><!--/breadcrumbs-->
 <!--=== End Breadcrumbs ===-->
 
-<?php var_dump($tags); ?>
     
 <!--=== Content Part ===-->
 <div class="container content blog-page blog-item">		
@@ -29,7 +28,7 @@
                 <li><i class="fa fa-pencil"></i> <?php echo $post['Post']['author']; ?></li>
             	<li><i class="fa fa-tags"></i> 
             	<?php foreach($tags as $tag) {
-            		echo $tag['csy_tags'] . ", ";
+            		echo $tag['csy_tags']['tag'] . ", ";
             	}?>
             	</li>
         	</ul>                    

@@ -3,7 +3,7 @@
 class Tag extends AppModel {
 
 	public $hasMany = array(
-			'PostTag' => array(
+			'PostTags' => array(
 					'className' => 'PostTag',
 			)
 	);

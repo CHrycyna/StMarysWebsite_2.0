@@ -1,13 +1,21 @@
 <?php
 
 class User extends AppModel {
-	public $primaryKey = 'id';
+	public $actsAs = array('Containable');	
 	
-	public $hasMany = array(
-			'MyPost' => array(
-					'className' => 'Post',
+	public $belongsTo = array(
+			'MyRole' => array(
+					'className'  => 'Role',
+					'foreignKey' => 'role_id'
 			)
 	);
+	
+	public $hasMany = array(
+        'MyPosts' => array(
+            'className'  => 'Post',
+            'foreignKey' => 'user_id'
+         )
+    );
 }
 
 ?>

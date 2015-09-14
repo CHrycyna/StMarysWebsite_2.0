@@ -2,6 +2,7 @@
 
 class Post extends AppModel {
 	public $primaryKey = 'id';
+	public $actsAs = array('Containable');
 	
 	public $validate = array(
 			'title' => array(
@@ -12,11 +13,17 @@ class Post extends AppModel {
 			)
 	);
 	
-	public $hasOne = 'User';
-	public $hasMany = array(
-			'PostTag' => array(
-					'className' => 'PostTag',
-			)
-	);
+     public $hasMany = array(
+        'ThisTagPost' => array(
+            'className'  => 'PostTag',
+            'foreignKey' => 'post_id'
+         )
+    );
+    public $belongsTo = array(
+        'MyAuthor' => array(
+            'className'  => 'User',
+            'foreignKey' => 'user_id'
+         )
+    );
 }
 ?>

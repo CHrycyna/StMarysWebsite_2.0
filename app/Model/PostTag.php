@@ -1,10 +1,19 @@
 <?php
 
 class PostTag extends AppModel {
-	public $hasOne = 'Post';
-	public $hasOne = 'Tag';
+	public $primaryKey = 'id';
 	
-	
+	public $hasOne = array(
+        'ThisTagPost' => array(
+            'className'  => 'Post',
+            'foreignKey' => 'post_id'
+         ),
+		'PostTags' => array (
+			'className' => 'Tag',
+			'foreignKey' => 'tag_id'
+		)
+			
+    );
 }
 
 ?>

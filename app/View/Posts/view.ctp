@@ -11,7 +11,6 @@
 </div><!--/breadcrumbs-->
 <!--=== End Breadcrumbs ===-->
 
-    
 <!--=== Content Part ===-->
 <div class="container content blog-page blog-item">		
     <!--Blog Post-->        
@@ -25,12 +24,29 @@
         <div class="blog-post-tags">
             <ul class="list-unstyled list-inline blog-info">
                 <li><i class="fa fa-calendar"></i> <?php echo date("F j, Y",strtotime($post['Post']['created'])); ?></li>
-                <li><i class="fa fa-pencil"></i> <?php echo $post['Post']['author']; ?></li>
+                <li><i class="fa fa-pencil"></i> <?php echo $this->Html->link($post['Post']['author'],
+					array('controller' => 'posts', 'action' => 'author', $post['Post']['author'])); ?></li>
+            	<?php if (isset($tags)) :?>
             	<li><i class="fa fa-tags"></i> 
-            	<?php foreach($tags as $tag) {
-            		echo $tag['csy_tags']['tag'] . ", ";
-            	}?>
+            	<?php
+            	$first = true;
+            	foreach($tags as $tag) {
+            		$tagLink = $this->Html->link($tag,
+					array('controller' => 'posts', 'action' => 'tag', $tag));
+               	
+            		if($first)
+            		{
+            			echo $tagLink;
+            			$first = false;
+            		}
+            		else
+            		{
+            			echo ", ".$tagLink;
+            		}
+            	}
+            	?>
             	</li>
+            	<?php endif; ?>
         	</ul>                    
         </div>
 		<?php echo h($post['Post']['body']); ?>

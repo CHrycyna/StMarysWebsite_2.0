@@ -21,8 +21,8 @@
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
 	<title>
-		St.Marys Nursery and Garden Center:
-		<?php echo $this->fetch('title'); ?>
+		<?php echo $this->fetch('title'); ?> - 
+		St.Marys Nursery and Garden Centers
 	</title>
 	
 	<!-- Meta -->
@@ -171,7 +171,7 @@
 	                                    Community
 	                                </a>
 	                                <ul class="dropdown-menu">
-                                	    <li><a href="posts">Blog</a></li>	
+                                	    <li><?php echo $this->Html->link('Blog', array('controller' => 'posts', 'action' => 'index'))?></li>	
                                 	    <li><a href="who_are_we.html">Event Calendar</a></li>
 	                                </ul>
 	                            </li>

@@ -24,33 +24,45 @@ class PostsController extends AppController {
 		if (!$id) {
 			throw new NotFoundException(__('Invalid post'));
 		}
-	
-		$post = $this->Post->findById($id);
-		if (!$post) {
-			throw new NotFoundException(__('Invalid post'));
-		}
-		if(sizeof($post))
-			$this->set('post', $post);
-
+		
+		$post = $this->Post->find('all', array(
+    			'conditions' => array('Post.id' => $id), //array of conditions
+				'fields' => array('Post.*', 'user.username'),
+ 				'joins' => array(
+ 						array(	'table' => 'users',
+ 								'alias' => 'User',
+ 								'type' => 'INNER',
+ 								'conditions' => array(
+ 										'User.id = Post.user_id',
+ 								)
+ 						),
+ 				)
+		));
+		
 		$this->loadModel('PostTag');
 		
 		$tags = $this->PostTag->find('list', array(
-    			'conditions' => array('PostTag.post_id' => $id), //array of conditions 	
- 				'fields' => array('Tag.tag'),
- 				'joins' => array(
- 						array(	'table' => 'tags',
+				'conditions' => array('PostTag.post_id' => $id),
+				'fields' => array('Tag.tag'),
+				'joins' => array(
+ 						array('table' => 'tags',
  								'alias' => 'Tag',
- 								'type' => 'LEFT',
+ 								'type' => 'inner',
  								'conditions' => array(
- 										'Tag.id = PostTag.tag_id',
+ 										'PostTag.tag_id = Tag.id'
  								)
  						)
  				)
  		));
 		
-		if(sizeof($tags))
-			$this->set('tags', $tags);
+		if (!$post) {
+			throw new NotFoundException(__('Invalid post'));
+		}
 		
+		$this->incrementViewCount($id);
+		$this->set('post', $post);
+		$this->set('tags', $tags);
+		$this->set('title', "Hello There");
 	}
 	
 	public function tag($tag = null) {
@@ -58,6 +70,7 @@ class PostsController extends AppController {
 			throw new NotFoundException(__('Invalid post'));
 		}
 		
+		$this->pageTitle = $tag;
 		$this->loadModel('PostTag');
 		$this->loadModel('Tag');
 		$this->loadModel('User');
@@ -104,6 +117,7 @@ class PostsController extends AppController {
 		
 		$posts = $this->Post->find('all', array(
 				'conditions' => array('User.username' => $username), //array of conditions
+				'fields' => array('Post.*'),
 				'joins' => array(
 						array('table' => 'users',
 								'alias' => 'User',
@@ -116,7 +130,14 @@ class PostsController extends AppController {
 		));
 		
 		$this->set('posts', $posts);
-		$this->set('author', $username);
+		$this->set('username', $username);
+	}
+	
+	private function incrementViewCount($id) {
+		$this->Post->updateAll(
+				array('Post.viewed' => 'Post.viewed+1'),
+				array('Post.id' => $id)
+		);
 	}
 }
 

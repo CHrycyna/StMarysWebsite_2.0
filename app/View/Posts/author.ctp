@@ -6,7 +6,7 @@
         <ul class="pull-right breadcrumb">
         	<li><a href="/">Home</a></li>
             <li><?php echo $this->Html->link('Blog', array('controller' => 'posts', 'action' => 'index'))?></li>
-        	<li class="active"><?php echo $author; ?> </li>
+        	<li class="active"><?php echo $username; ?> </li>
         	
         </ul>
    	</div><!--/container-->
@@ -23,8 +23,8 @@
             	<h3><?php echo $this->Html->link($post['Post']['title'],
 					array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></h3>
                	<ul class="list-inline grid-boxes-news">
-					<li><span>By</span> <?php echo $this->Html->link($post['User']['username'],
-					array('controller' => 'posts', 'action' => 'author', $post['User']['username'])); ?></li>
+					<li><span>By</span> <?php echo $this->Html->link($username,
+					array('controller' => 'posts', 'action' => 'author', $username)); ?></li>
                     <li>|</li>
                     <li><i class="fa fa-clock-o"></i> <?php echo date("F j, Y",strtotime($post['Post']['created'])); ?></li>
                 </ul>                    

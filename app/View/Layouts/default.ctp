@@ -190,6 +190,11 @@
 	                                </ul>
 	                            </li>
 	                            <!-- End About Us -->
+	                            <?php if (isset($loggedIn)) : ?>
+	                            <li class="">
+	                            	<a href="/admin/logout">Log Out</a>
+	                            </li>
+	                            <?php endif;?>
 	                        </ul>
 	                    </div>
 	                </div><!--/navbar-collapse-->

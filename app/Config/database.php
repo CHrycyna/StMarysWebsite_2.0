@@ -68,12 +68,13 @@
  */
 class DATABASE_CONFIG {
 
+	//Current PHP version: 5.3.28
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'root',
-		'password' => '',
+		'host' => '159.203.72.247',
+		'login' => 'stm7353',
+		'password' => 'N5TsHqPBEjTTAXMG',
 		'database' => 'StMarysWebsite',
 		'prefix' => 'csy_',
 		'port' => '3306',

@@ -31,16 +31,37 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	public $helpers = array ('Html', 'Form');
-		
 	var $actsAs = array('Containable');
 	
+    public $helpers = array('Html', 'Form', 'Session');
+    
+    public $components = array(
+        'Flash',
+        'Auth' => array(
+            'loginRedirect' => array(
+                'controller' => 'posts',
+                'action' => 'index'
+            ),
+            'logoutRedirect' => array(
+                'controller' => 'pages',
+                'action' => 'display',
+                'home'
+            ),
+            'authenticate' => array(
+                'Form' => array(
+                    'passwordHasher' => 'sha1'
+                )
+            ),
+        	'authorize' => array('Controller') // Added this line	
+        )
+    );
 	
 	public function beforeFilter() {
+		$this->Auth->allow();
 		$this->loadModel('Post');
 		$this->set('fPosts', $this->Post->find('all', array(
 				'order' => array('Post.created DESC'),
 				'limit' => 2,
-		)) );
+		)) );		
 	}
 }

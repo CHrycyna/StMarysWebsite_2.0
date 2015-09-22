@@ -7,7 +7,7 @@ class PostsController extends AppController {
 		$this->loadModel('User');
 		$this->set('posts', $this->Post->find('all', array(
 				'order' => array('Post.created DESC'),
-				'fields' => array('Post.*', 'user.username'),
+				'fields' => array('Post.*', 'User.username'),
 				'joins' => array(
 						array(	'table' => 'users',
 								'alias' => 'User',
@@ -20,6 +20,14 @@ class PostsController extends AppController {
 		)) );
 	}
 	
+	public function admin_index() {
+		
+	}
+	
+	public function admin_add() {
+		
+	}
+	
 	public function view($id = null) {
 		if (!$id) {
 			throw new NotFoundException(__('Invalid post'));
@@ -27,7 +35,7 @@ class PostsController extends AppController {
 		
 		$post = $this->Post->find('all', array(
     			'conditions' => array('Post.id' => $id), //array of conditions
-				'fields' => array('Post.*', 'user.username'),
+				'fields' => array('Post.*', 'User.username'),
  				'joins' => array(
  						array(	'table' => 'users',
  								'alias' => 'User',
@@ -77,7 +85,7 @@ class PostsController extends AppController {
 		
 		$posts = $this->Post->find('all', array(
 				'order' => array('Post.created DESC'),
-				'fields' => array('Post.*', 'user.username'),
+				'fields' => array('Post.*', 'User.username'),
 				'conditions' => array('Tag.tag' => $tag), //array of conditions
 				'joins' => array(
 						array(	'table' => 'users',

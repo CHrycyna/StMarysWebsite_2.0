@@ -69,17 +69,30 @@
 class DATABASE_CONFIG {
 
 	//Current PHP version: 5.3.28
-	public $default = array(
+	public $default =  array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => '159.203.72.247',
-		'login' => 'stm7353',
-		'password' => 'N5TsHqPBEjTTAXMG',
+		'host' => 'localhost',
+		'login' => 'root',
+		'password' => '',
 		'database' => 'StMarysWebsite',
 		'prefix' => 'csy_',
 		'port' => '3306',
 		'encoding' => 'utf8',
 	);
+	
+	/*
+	public $default =  array(
+			'datasource' => 'Database/Mysql',
+			'persistent' => false,
+			'host' => '159.203.72.247',
+			'login' => 'stm7353',
+			'password' => 'N5TsHqPBEjTTAXMG',
+			'database' => 'StMarysWebsite',
+			'prefix' => 'csy_',
+			'port' => '3306',
+			'encoding' => 'utf8',
+	);*/
 
 	public $test = array(
 		'datasource' => 'Database/Mysql',

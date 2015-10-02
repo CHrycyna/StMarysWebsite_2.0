@@ -28,6 +28,9 @@
 	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 	Router::connect('/WhoAreWe', array('controller' => 'pages', 'action' => 'display', 'who_are_we'));
 	Router::connect('/OurExperience', array('controller' => 'pages', 'action' => 'display', 'our_experience'));
+	Router::connect('/TermsOfUse', array('controller' => 'pages', 'action' => 'display', 'terms_of_use'));
+	Router::connect('/PrivacyPolicy', array('controller' => 'pages', 'action' => 'display', 'privacy_policy'));
+	Router::connect('/License', array('controller' => 'pages', 'action' => 'display', 'license'));
 	
 /**
  * ...and connect the rest of 'Pages' controller's URLs.

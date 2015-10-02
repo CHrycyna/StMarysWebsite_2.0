@@ -190,6 +190,11 @@
 	                                </ul>
 	                            </li>
 	                            <!-- End About Us -->
+	                            <?php if (isset($loggedIn)) : ?>
+	                            <li class="">
+	                            	<a href="/admin/logout">Log Out</a>
+	                            </li>
+	                            <?php endif;?>
 	                        </ul>
 	                    </div>
 	                </div><!--/navbar-collapse-->
@@ -213,20 +218,22 @@
 	                        <div class="heading-footer"><h2>About Us</h2></div>
 	                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis blandit ut metus a commodo. Pellentesque congue tellus sed enim sollicitudin, id blandit mauris eleifend.</p><br>
 	                        <ul class="list-inline dark-social-v2">
-	                            <li><a href="#"><i class="rounded-sm fa fa-facebook"></i></a></li>
-	                            <li><a href="#"><i class="rounded-sm fa fa-twitter"></i></a></li>
-	                            <li><a href="#"><i class="rounded-sm fa fa-google-plus"></i></a></li>
-	                            <li><a href="#"><i class="rounded-sm fa fa-instagram"></i></a></li>
-	                            <li><a href="#"><i class="rounded-sm fa fa-tumblr"></i></a></li>
-	                            <li><a href="#"><i class="rounded-sm fa fa-pinterest"></i></a></li>
+	                            <li><a href="https://www.facebook.com/pages/St-Marys-Nursery-and-Garden-Centre-Ltd/128776243867073"><i class="rounded-sm fa fa-facebook"></i></a></li>
+	                            <li><a href="https://twitter.com/StMarysNursery"><i class="rounded-sm fa fa-twitter"></i></a></li>
+	                            <!-- <li><a href="#"><i class="rounded-sm fa fa-google-plus"></i></a></li> -->
+	                            <li><a href="http://instagram.com/stmarysnursery?ref=badge"><i class="rounded-sm fa fa-instagram"></i></a></li>
+	                            <!-- <li><a href="#"><i class="rounded-sm fa fa-tumblr"></i></a></li> -->
+	                            <!-- <li><a href="#"><i class="rounded-sm fa fa-pinterest"></i></a></li> -->
 	                        </ul>
 	                    </div>
 	                    <!-- End About Us -->
 	
 	                    <!-- Recent News -->
 	                    <div class="col-md-3 sm-margin-bottom-40">
-	                        <div class="heading-footer"><h2>Recent News</h2></div>
+	                        <div class="heading-footer"><h2>Recent Newsletters</h2></div>
 	                        <ul class="list-unstyled link-news">
+                        	<?php $campaigns = array( ); ?>
+                        	<?php foreach ($campaigns as $newsletter) :?>
 	                            <li>
 	                                <a href="#">Apple Conference</a>
 	                                <small>12 July, 2014</small>
@@ -239,6 +246,7 @@
 	                                <a href="#">Themeforest Templates</a>
 	                                <small>12 July, 2014</small>
 	                            </li>
+                            <?php endforeach; ?>
 	                        </ul>
 	                    </div>
 	                    <!-- End Recent News -->
@@ -292,11 +300,10 @@
 	        <div class="copyright">
 	            <div class="container">
 	                <ul class="list-inline terms-menu">
-	                    <li class="silver">Copyright © 2014 - All Rights Reserved</li>
-	                    <li><a href="#">Terms of Use</a></li>
-	                    <li><a href="#">Privacy and Policy</a></li>
-	                    <li><a href="#">License</a></li>
-	                    <li><a href="#">Support</a></li>
+	                    <li class="silver">Copyright © 2015 - All Rights Reserved</li>
+	                    <li><a href="/TermsOfUse">Terms of Use</a></li>
+	                    <li><a href="/PrivacyPolicy">Privacy Policy</a></li>
+	                    <li><a href="/License">License</a></li>
 	                </ul>
 	            </div>
 	        </div>

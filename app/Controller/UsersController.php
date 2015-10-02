@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 App::uses('AppController', 'Controller');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
@@ -96,6 +97,14 @@ class UsersController extends AppController {
 		return $this->redirect($this->Auth->logout());
 	}
 
+=======
+class UsersController extends AppController
+{
+	public function login()
+	{
+		
+	}
+>>>>>>> 7e51a4d8b80b5bc7b900991470ed95452f014efe
 }
 
 ?>

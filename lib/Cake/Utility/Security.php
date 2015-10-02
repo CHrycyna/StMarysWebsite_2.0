@@ -123,6 +123,7 @@ class Security {
 
 		if (!$type || $type === 'sha1') {
 			if (function_exists('sha1')) {
+				echo sha1($string);
 				return sha1($string);
 			}
 			$type = 'sha256';

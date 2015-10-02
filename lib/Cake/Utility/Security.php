@@ -110,6 +110,8 @@ class Security {
 		$type = strtolower($type);
 
 		if ($type === 'blowfish') {
+			echo $salt;
+			echo static::_crypt($string, $salt);
 			return static::_crypt($string, $salt);
 		}
 		if ($salt) {

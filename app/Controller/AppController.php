@@ -32,15 +32,46 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 	public $helpers = array ('Html', 'Form');
-		
-	var $actsAs = array('Containable');
+	
+	public $components = array(
+			'Flash',
+			'Auth' => array(
+					'loginRedirect' => array(
+							'controller' => 'posts',
+							'action' => 'index'
+					),
+					'logoutRedirect' => array(
+							'controller' => 'pages',
+							'action' => 'display',
+							'home'
+					),
+					'authenticate' => array(
+							'Form' => array(
+									'passwordHasher' => 'blowfish'
+							)
+					),
+					'authorize' => array('Controller'),
+			)
+	);
 	
 	
 	public function beforeFilter() {
+		$this->Auth->allow();
+		
 		$this->loadModel('Post');
 		$this->set('fPosts', $this->Post->find('all', array(
 				'order' => array('Post.created DESC'),
 				'limit' => 2,
 		)) );
+	}
+	
+	public function isAuthorized($user) {
+		// Admin can access every action
+		if (isset($user['role']) && $user['role'] === 'admin') {
+			return true;
+		}
+	
+		// Default deny
+		return false;
 	}
 }

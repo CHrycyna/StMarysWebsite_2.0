@@ -1,20 +1,21 @@
 <?php
 
+App::uses('AppModel', 'Model');
+
 class User extends AppModel {
-	public $actsAs = array('Containable');	
-	
-	public $belongsTo = array(
-			'MyRole' => array(
-					'className'  => 'Role',
-					'foreignKey' => 'role_id'
-			)
-	);
-	
-	public $hasMany = array(
-        'MyPosts' => array(
-            'className'  => 'Post',
-            'foreignKey' => 'user_id'
-         )
+    public $validate = array(
+        'username' => array(
+            'required' => array(
+                'rule' => 'notBlank',
+                'message' => 'A username is required'
+            )
+        ),
+        'password' => array(
+            'required' => array(
+                'rule' => 'notBlank',
+                'message' => 'A password is required'
+            )
+        )
     );
 }
 

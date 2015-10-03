@@ -31,7 +31,6 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-<<<<<<< HEAD
 	public $helpers = array ('Html', 'Form');
 	
 	public $components = array(
@@ -54,39 +53,9 @@ class AppController extends Controller {
 					'authorize' => array('Controller'),
 			)
 	);
-=======
-	var $actsAs = array('Containable');
->>>>>>> 7e51a4d8b80b5bc7b900991470ed95452f014efe
-	
-    public $helpers = array('Html', 'Form', 'Session');
-    
-    public $components = array(
-        'Flash',
-        'Auth' => array(
-            'loginRedirect' => array(
-                'controller' => 'posts',
-                'action' => 'index'
-            ),
-            'logoutRedirect' => array(
-                'controller' => 'pages',
-                'action' => 'display',
-                'home'
-            ),
-            'authenticate' => array(
-                'Form' => array(
-                    'passwordHasher' => 'sha1'
-                )
-            ),
-        	'authorize' => array('Controller') // Added this line	
-        )
-    );
 	
 	public function beforeFilter() {
 		$this->Auth->allow();
-<<<<<<< HEAD
-		
-=======
->>>>>>> 7e51a4d8b80b5bc7b900991470ed95452f014efe
 		$this->loadModel('Post');
 		$this->set('fPosts', $this->Post->find('all', array(
 				'order' => array('Post.created DESC'),

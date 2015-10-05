@@ -3,21 +3,7 @@
 class PostsController extends AppController {
 	public $helpers = array ('Html', 'Form');
 	
-	public function index() {
-		$this->loadModel('User');
-		$this->set('posts', $this->Post->find('all', array(
-				'order' => array('Post.created DESC'),
-				'fields' => array('Post.*', 'User.username'),
-				'joins' => array(
-						array(	'table' => 'users',
-								'alias' => 'User',
-								'type' => 'INNER',
-								'conditions' => array(
-										'User.id = Post.user_id',
-								)
-						)
-				)
-		)) );
+	public function index() {	
 	}
 	
 	public function admin_index() {
@@ -158,6 +144,54 @@ class PostsController extends AppController {
 				array('Post.viewed' => 'Post.viewed+1'),
 				array('Post.id' => $id)
 		);
+	}
+	
+	public function api_get()
+	{
+		$this->layout = null ;
+		$this->autoRender = false;
+		
+		if($this->request->is('post'))
+		{
+			$data = $this->params['data'];
+			
+			$this->loadModel('User');
+			
+			$options = array(
+					'order' => array('Post.created DESC'),
+					//'conditions' => array('Post.id' => '*'), //array of conditions
+					'fields' => array('Post.*', 'User.username'),
+					'joins' => array(
+							array(	'table' => 'users',
+									'alias' => 'User',
+									'type' => 'INNER',
+									'conditions' => array(
+											'User.id = Post.user_id',
+									)
+							)
+					)
+			);
+			
+			if(isset($this->params['data']['post_ids']) && is_numeric($this->params['data']['post_ids']))
+			{
+				$options['conditions'] = array('Post.id' => (int)$this->params['data']['post_ids']);
+			}
+						
+			$posts = $this->Post->find('all', $options);
+			
+			return json_encode(array(
+					'success' => 1,
+					'message' => $data,
+					'data' => $posts
+			));
+		}
+		else
+		{
+			return json_encode(array(
+					'success' => 0,
+					'message' => "Invalid Request Type"
+			));	
+		}
 	}
 }
 

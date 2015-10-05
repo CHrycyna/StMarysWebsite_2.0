@@ -1,0 +1,5 @@
+var App = function () {
+	return {
+		
+	}
+}

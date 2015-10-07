@@ -159,17 +159,30 @@ class PostsController extends AppController {
 			
 			$options = array(
 					'order' => array('Post.created DESC'),
-					//'conditions' => array('Post.id' => '*'), //array of conditions
-					'fields' => array('Post.*', 'User.username'),
+					'fields' => array('Post.*', 'User.username', 'Tag.tag'),
 					'joins' => array(
-							array(	'table' => 'users',
-									'alias' => 'User',
-									'type' => 'INNER',
-									'conditions' => array(
-											'User.id = Post.user_id',
-									)
-							)
-					)
+						array(	'table' => 'users',
+								'alias' => 'User',
+								'type' => 'INNER',
+								'conditions' => array(
+										'User.id = Post.user_id',
+								)
+						),
+						array('table' => 'post_tags',
+					        'alias' => 'PostTag',
+					        'type' => 'inner',
+					        'conditions' => array(
+					            'Post.id = PostTag.post_id'
+					        )
+					    ),
+					    array('table' => 'tags',
+					        'alias' => 'Tag',
+					        'type' => 'inner',
+					        'conditions' => array(
+					            'PostTag.tag_id = Tag.id'
+					        )
+					    )
+				)
 			);
 			
 			if(isset($this->params['data']['post_ids']) && is_numeric($this->params['data']['post_ids']))

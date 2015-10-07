@@ -73,27 +73,15 @@ class DATABASE_CONFIG {
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'root',
+		'login' => 'chrycyna',
 		'password' => '',
 		'database' => 'StMarysWebsite',
 		'prefix' => 'csy_',
 		'port' => '3306',
-		'encoding' => 'utf8',
+		//'encoding' => 'utf8',
 	);
-	
-	/*
-	public $default =  array(
-			'datasource' => 'Database/Mysql',
-			'persistent' => false,
-			'host' => '159.203.72.247',
-			'login' => 'stm7353',
-			'password' => 'N5TsHqPBEjTTAXMG',
-			'database' => 'StMarysWebsite',
-			'prefix' => 'csy_',
-			'port' => '3306',
-			'encoding' => 'utf8',
-	);*/
 
+	/*
 	public $test = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
@@ -103,5 +91,5 @@ class DATABASE_CONFIG {
 		'database' => '',
 		'prefix' => 'gbk',
 		//'encoding' => 'utf8',
-	);
+	);*/
 }

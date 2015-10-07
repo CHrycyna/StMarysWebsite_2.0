@@ -329,6 +329,7 @@
 	
 	<!-- JS Page Level -->
 	<?php echo $this->Html->script('app.js');?>
+	<?php echo $this->Html->script('api.js')?>
 	<?php echo $this->Html->script('plugins/revolution-slider.js')?>
 	<?php echo $this->fetch('script');	?>
 	

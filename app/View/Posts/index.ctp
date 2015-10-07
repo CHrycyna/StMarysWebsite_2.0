@@ -131,3 +131,20 @@
 <?php $this->Html->script('plugins/masonry/jquery.masonry.min.js', array('inline' => false));?>
 <?php $this->Html->script('pages/blog-masonry.js', array('inline' => false));?>
 <?php $this->Html->script('plugins/style-switcher.js', array('inline' => false));?>
+<?php 
+$this->Html->scriptStart(array('inline' => false));
+
+echo "
+function callback(response) {
+	console.log('Response: ' + response);
+};
+		
+jQuery(document).ready(function() {
+	Api.getAsync('1.0', 'Posts', 'api_get', null, callback);
+});";
+
+$this->Html->scriptEnd();
+
+?>
+
+

@@ -140,7 +140,13 @@ function callback(response) {
 };
 		
 jQuery(document).ready(function() {
-	Api.getAsync('1.0', 'Posts', 'api_get', null, callback);
+	Api({
+		api: 1.0,
+		type: 'post',
+		controller: 'posts',
+		method: 'get',
+		callback: callback,
+	});
 });";
 
 $this->Html->scriptEnd();

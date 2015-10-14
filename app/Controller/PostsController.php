@@ -170,14 +170,14 @@ class PostsController extends AppController {
 						),
 						array('table' => 'post_tags',
 					        'alias' => 'PostTag',
-					        'type' => 'inner',
+					        'type' => 'LEFT',
 					        'conditions' => array(
 					            'Post.id = PostTag.post_id'
 					        )
 					    ),
 					    array('table' => 'tags',
 					        'alias' => 'Tag',
-					        'type' => 'inner',
+					        'type' => 'LEFT',
 					        'conditions' => array(
 					            'PostTag.tag_id = Tag.id'
 					        )
@@ -191,10 +191,9 @@ class PostsController extends AppController {
 			}
 						
 			$posts = $this->Post->find('all', $options);
-			
+
 			return json_encode(array(
 					'success' => 1,
-					'message' => $data,
 					'data' => $posts
 			));
 		}

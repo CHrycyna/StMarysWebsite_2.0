@@ -170,20 +170,21 @@ class PostsController extends AppController {
 						),
 						array('table' => 'post_tags',
 					        'alias' => 'PostTag',
-					        'type' => 'LEFT',
+					        'type' => 'INNER',
 					        'conditions' => array(
 					            'Post.id = PostTag.post_id'
 					        )
 					    ),
 					    array('table' => 'tags',
 					        'alias' => 'Tag',
-					        'type' => 'LEFT',
+					        'type' => 'INNER',
 					        'conditions' => array(
 					            'PostTag.tag_id = Tag.id'
 					        )
 					    )
 				)
 			);
+			
 			
 			if(isset($this->params['data']['post_ids']) && is_numeric($this->params['data']['post_ids']))
 			{
@@ -192,6 +193,8 @@ class PostsController extends AppController {
 						
 			$posts = $this->Post->find('all', $options);
 
+			var_dump($posts);
+			
 			return json_encode(array(
 					'success' => 1,
 					'data' => $posts

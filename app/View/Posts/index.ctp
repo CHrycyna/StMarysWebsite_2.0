@@ -14,7 +14,8 @@
 	<div class="row">
 		<div class="col-md-9">
 			<div class="blog_masonry_3col">
-				<div class="grid-boxes masonry">
+				<div id="grid" class="grid-boxes masonry">
+					<?php /*
 				    <?php foreach ($posts as $post): ?>
 			    	<div class="grid-boxes-in">
 			    		<?php if(isset($post['Post']['media_type'])) :?>
@@ -38,7 +39,7 @@
 			        	</div>
 			    	</div>
 			    	<?php endforeach; ?>
-			    	<?php unset($post); ?>
+			    	<?php unset($post); */?>
 				</div><!--/container-->
 			</div>
 		</div>
@@ -131,21 +132,17 @@
 <?php $this->Html->script('plugins/masonry/jquery.masonry.min.js', array('inline' => false));?>
 <?php $this->Html->script('pages/blog-masonry.js', array('inline' => false));?>
 <?php $this->Html->script('plugins/style-switcher.js', array('inline' => false));?>
+<?php $this->Html->script('posts.js', array('inline' => false));?>
 <?php 
 $this->Html->scriptStart(array('inline' => false));
 
-echo "
-function callback(response) {
-	console.log('Response: ' + response);
-};
-		
-jQuery(document).ready(function() {
+echo "jQuery(document).ready(function() {
 	Api({
 		api: 1.0,
-		type: 'post',
+		type: 'POST',
 		controller: 'posts',
 		method: 'get',
-		callback: callback,
+		callback: indexMasonry,
 	});
 });";
 

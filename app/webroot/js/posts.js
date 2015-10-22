@@ -13,9 +13,7 @@ function indexMasonry(response) {
 		
 		var elems = [];
 		for(post of response['data'])
-		{
-			console.log(post);
-			
+		{			
 			var date = new Date(post['Post']['created']);
 			var day = date.getDate();
 			var monthIndex = date.getMonth();
@@ -27,14 +25,23 @@ function indexMasonry(response) {
 				body = body.substring(0,maxBody-3) + "..."; 
 			}
 			
-			var tags = "<a href='/posts/tag/Annual'>Annual</a>";
+			console.log(post);
 			
+			var img = "";
+			if(post["Post"]["media"] != null) {
+				img = "<div class='blog-img'> \
+						<img class='img-responsive full-width' src='/img/blog/" + post["Post"]["media"] +"' alt=''> \
+            		   </div>";
+			}
+			
+			console.log(img);
+						
 			var template = "<div class='grid-boxes-caption'> \
+								" + img + "\
         						<h3><a href='/posts/view/"+post["Post"]["id"]+"'>"+post["Post"]["title"]+"</a></h3> \
            						<ul class='list-inline grid-boxes-news'> \
 									<li><i class='fa fa-calendar'></i> " + monthNames[monthIndex] + " " + day + ", " + year + "</li> \
 									<li><i class='fa fa-pencil'></i> <a href='/posts/author/"+post["User"]["username"]+"'>"+post["User"]["username"]+"</a></li> \
-									<li><i class='fa fa-tags'></i> " + tags + "</li> \
 								</ul> \
 								<p>"+body+"</p> \
 							</div>";
@@ -52,3 +59,27 @@ function indexMasonry(response) {
 		$grid.append( $elems ).masonry( 'appended', $elems );
 	}
 };
+
+function trendingMasonry(response) {
+	
+}
+
+function recentImages(response) {	
+	var $photostream = $('#photostream');
+		
+	for(post of response['data'])
+	{		
+		var template = "<a href='/img/blog/"+post['Post']['media']+"' rel='gallery' class='fancybox img-hover-v2' title='Image "+post['Post']['id'] +"'> \
+				<span><img class='img-responsive' src='/img/blog/"+ post['Post']['media'] +"' alt=''></span> \
+				</a>";
+		
+		var outer = document.createElement('li');
+		outer.innerHTML = template;
+		
+		$photostream.append(outer);
+	}
+}
+
+function recentPosts(response) {
+	
+}

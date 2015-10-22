@@ -159,29 +159,15 @@ class PostsController extends AppController {
 			
 			$options = array(
 					'order' => array('Post.created DESC'),
-					'fields' => array('Post.*', 'User.username', 'Tag.tag'),
+					'fields' => array('Post.*', 'User.username'),
 					'joins' => array(
 						array(	'table' => 'users',
 								'alias' => 'User',
-								'type' => 'INNER',
+								'type' => 'LEFT',
 								'conditions' => array(
 										'User.id = Post.user_id',
 								)
-						),
-						array('table' => 'post_tags',
-					        'alias' => 'PostTag',
-					        'type' => 'INNER',
-					        'conditions' => array(
-					            'Post.id = PostTag.post_id'
-					        )
-					    ),
-					    array('table' => 'tags',
-					        'alias' => 'Tag',
-					        'type' => 'INNER',
-					        'conditions' => array(
-					            'PostTag.tag_id = Tag.id'
-					        )
-					    )
+						)
 				)
 			);
 			
@@ -192,8 +178,6 @@ class PostsController extends AppController {
 			}
 						
 			$posts = $this->Post->find('all', $options);
-
-			var_dump($posts);
 			
 			return json_encode(array(
 					'success' => 1,
@@ -206,6 +190,34 @@ class PostsController extends AppController {
 					'success' => 0,
 					'message' => "Invalid Request Type"
 			));	
+		}
+	}
+	
+	public function api_recentImages() {
+		$this->layout = null ;
+		$this->autoRender = false;
+		
+		if($this->request->is('post'))
+		{
+			$data = $this->params['data'];
+			
+			$options = array(
+					'order' => array('Post.created DESC'),
+					'fields' => array('Post.id','Post.media'),
+					'conditions' => array('Post.post_type_id' => '1'),
+			);
+			
+			if(isset($this->params['data']['nbImages']) && is_numeric($this->params['data']['nbImages']))
+			{
+				$options['limit'] = (int)$this->params['data']['nbImages'];
+			}
+			
+			$posts = $this->Post->find('all', $options);
+			
+			return json_encode(array(
+					'success' => 1,
+					'data' => $posts
+			));
 		}
 	}
 }

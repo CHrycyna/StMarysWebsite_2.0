@@ -4,6 +4,7 @@ var Api = (function (options) {
 	$.ajax({
 		url: url,
         type: options['type'],
+        data: options['data'],
         dataType: 'json',
         success: function(data, textStatus, xhr) {
         	if (typeof options['callback'] === "function") {

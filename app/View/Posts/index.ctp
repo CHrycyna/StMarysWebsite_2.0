@@ -77,53 +77,13 @@
 
                 <div class="headline-v2 bg-color-light"><h2>Photostream</h2></div>
                 <!-- Photostream -->
-                <ul class="list-inline blog-photostream margin-bottom-50">
-                    <li>
+                <ul id="photostream" class="list-inline blog-photostream margin-bottom-50"></ul>
+                    <!-- <li>
                         <a href="assets/img/main/img22.jpg" rel="gallery" class="fancybox img-hover-v2" title="Image 1">
                             <span><img class="img-responsive" src="assets/img/main/img22.jpg" alt=""></span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="assets/img/main/img23.jpg" rel="gallery" class="fancybox img-hover-v2" title="Image 2">
-                            <span><img class="img-responsive" src="assets/img/main/img23.jpg" alt=""></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="assets/img/main/img4.jpg" rel="gallery" class="fancybox img-hover-v2" title="Image 3">
-                            <span><img class="img-responsive" src="assets/img/main/img4.jpg" alt=""></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="assets/img/main/img9.jpg" rel="gallery" class="fancybox img-hover-v2" title="Image 4">
-                            <span><img class="img-responsive" src="assets/img/main/img9.jpg" alt=""></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="assets/img/main/img25.jpg" rel="gallery" class="fancybox img-hover-v2" title="Image 5">
-                            <span><img class="img-responsive" src="assets/img/main/img25.jpg" alt=""></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="assets/img/main/img6.jpg" rel="gallery" class="fancybox img-hover-v2" title="Image 6">
-                            <span><img class="img-responsive" src="assets/img/main/img6.jpg" alt=""></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="assets/img/main/img20.jpg" rel="gallery" class="fancybox img-hover-v2" title="Image 7">
-                            <span><img class="img-responsive" src="assets/img/main/img20.jpg" alt=""></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="assets/img/main/img3.jpg" rel="gallery" class="fancybox img-hover-v2" title="Image 8">
-                            <span><img class="img-responsive" src="assets/img/main/img3.jpg" alt=""></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="assets/img/main/img7.jpg" rel="gallery" class="fancybox img-hover-v2" title="Image 9">
-                            <span><img class="img-responsive" src="assets/img/main/img7.jpg" alt=""></span>
-                        </a>
-                    </li>                        
-                </ul>
+                    </li> -->
+                         
                 <!-- End Photostream -->
             </div>
 	</div>
@@ -143,6 +103,14 @@ echo "jQuery(document).ready(function() {
 		controller: 'posts',
 		method: 'get',
 		callback: indexMasonry,
+	});
+	Api({
+		api: 1.0,
+		type: 'POST',
+		data: {'nbImages':9},
+		controller: 'posts',
+		method: 'recentImages',
+		callback: recentImages,
 	});
 });";
 

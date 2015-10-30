@@ -230,7 +230,7 @@ var App = function () {
             Api({
         		api: 1.0,
         		type: 'POST',
-        		data: { nbPosts: 3 },
+        		data: { nbPosts: 2 },
         		controller: 'posts',
         		method: 'recentPosts',
         		callback: recentPosts,

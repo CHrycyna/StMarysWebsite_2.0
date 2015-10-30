@@ -14,78 +14,25 @@
 	<div class="row">
 		<div class="col-md-9">
 			<div class="blog_masonry_3col">
-				<div id="grid" class="grid-boxes masonry">
-					<?php /*
-				    <?php foreach ($posts as $post): ?>
-			    	<div class="grid-boxes-in">
-			    		<?php if(isset($post['Post']['media_type'])) :?>
-			        	<img class="img-responsive" src="/img/blog/<?php echo $post['Post']['media']?>" alt="">
-			            <?php endif; ?>
-			            <div class="grid-boxes-caption">
-			            	<h3><?php echo $this->Html->link($post['Post']['title'],
-								array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></h3>
-			               	<ul class="list-inline grid-boxes-news">
-			                	<li><span>By</span> <?php echo $this->Html->link($post['User']['username'],
-								array('controller' => 'posts', 'action' => 'author', $post['User']['username'])); ?></li>
-			                    <li>|</li>
-			                    <li><i class="fa fa-clock-o"></i> <?php echo date("F j, Y",strtotime($post['Post']['created'])); ?></li>
-			                </ul>                    
-			                <?php
-			                if (strlen($post['Post']['body']) > 250)
-			                	echo substr($post['Post']['body'], 0, 250) . "...";
-			                else
-			                	echo $post['Post']['body'];
-			                ?>
-			        	</div>
-			    	</div>
-			    	<?php endforeach; ?>
-			    	<?php unset($post); */?>
-				</div><!--/container-->
+				<div id="grid" class="grid-boxes masonry"></div>
 			</div>
 		</div>
 		<div class="col-md-3">
-                <div class="headline-v2 bg-color-light"><h2>Trending</h2></div>
-                <!-- Trending -->
-                <ul class="list-unstyled blog-trending margin-bottom-50">
-                <?php foreach($trending as $trend) :?>
-                	<li>
-                        <h3><?php echo $this->Html->link($trend['Post']['title'],
-								array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></h3>
-                        <small>
-                        	<?php echo date("F j, Y",strtotime($trend['Post']['created'])); ?> / 
-                        	<a href="#">Hi-Tech,</a> <a href="#">Technology</a>
-                        </small>
-                    </li>
-                <?php endforeach;; ?>
-                <?php unset($trend); ?>
-                </ul>
-                <!-- End Trending -->
+        	<!-- Trending -->
+			<div class="headline-v2 bg-color-light"><h2>Trending</h2></div>
+            <ul id="trendingPosts" class="list-unstyled blog-trending margin-bottom-50"></ul>
+            <!-- End Trending -->
 
-                <div class="headline-v2 bg-color-light"><h2>Tags</h2></div>
-                <!-- Tags v2 -->
-                <ul class="list-inline tags-v2 margin-bottom-50">
-                    <li><a href="#">Web Design</a></li>
-                    <li><a href="#">Economy</a></li>
-                    <li><a href="#">Sport</a></li>
-                    <li><a href="#">Marketing</a></li>
-                    <li><a href="#">Books</a></li>
-                    <li><a href="#">Elections</a></li>
-                    <li><a href="#">Flickr</a></li>
-                    <li><a href="#">Politics</a></li>
-                </ul>
-                <!-- End Tags v2 -->
+			<!-- Tags v2 -->
+            <div class="headline-v2 bg-color-light"><h2>Tags</h2></div>
+            <ul id="randomTags" class="list-inline tags-v2 margin-bottom-50"></ul>
+            <!-- End Tags v2 -->
 
-                <div class="headline-v2 bg-color-light"><h2>Photostream</h2></div>
-                <!-- Photostream -->
-                <ul id="photostream" class="list-inline blog-photostream margin-bottom-50"></ul>
-                    <!-- <li>
-                        <a href="assets/img/main/img22.jpg" rel="gallery" class="fancybox img-hover-v2" title="Image 1">
-                            <span><img class="img-responsive" src="assets/img/main/img22.jpg" alt=""></span>
-                        </a>
-                    </li> -->
-                         
-                <!-- End Photostream -->
-            </div>
+			<!-- Photostream -->
+            <div class="headline-v2 bg-color-light"><h2>Photostream</h2></div>
+            <ul id="photostream" class="list-inline blog-photostream margin-bottom-50"></ul>
+            <!-- End Photostream -->
+        </div>
 	</div>
 </div>
 
@@ -107,10 +54,26 @@ echo "jQuery(document).ready(function() {
 	Api({
 		api: 1.0,
 		type: 'POST',
-		data: {'nbImages':9},
+		data: { nbImages: 9},
 		controller: 'posts',
 		method: 'recentImages',
 		callback: recentImages,
+	});
+	Api({
+		api: 1.0,
+		type: 'POST',
+		data: { nbPosts: 3 },
+		controller: 'posts',
+		method: 'trendingPosts',
+		callback: trendingPosts
+	});
+	Api({
+		api: 1.0,
+		type: 'POST',
+		data: { nbTags: 10 },
+		controller: 'posts',
+		method: 'randomTags',
+		callback: randomTags
 	});
 });";
 

@@ -175,6 +175,43 @@ var App = function () {
         jQuery('.popovers-toggle').popover('toggle');
         jQuery('.popovers-destroy').popover('destroy');
     }
+    
+    function recentPosts(response) {
+    	var $photostream = $('#rPosts');
+    	
+    	var monthNames = [
+		                  "January", "February", "March",
+		                  "April", "May", "June", "July",
+		                  "August", "September", "October",
+		                  "November", "December"
+		                ];
+    	
+    	for(post of response['data'])
+		{	
+    		var date = new Date(post['Post']['created']);
+			var day = date.getDate();
+			var monthIndex = date.getMonth();
+			var year = date.getFullYear();
+			
+        	var img = "";
+    		if(post["Post"]["media"] != null) {
+    			img = "<div class='blog-img'> \
+					<img class='img-responsive' src='/img/blog/" + post["Post"]["media"] +"' alt=''> \
+					</div>";
+    		}
+    	
+    		var template = img +                 
+						     "<div class='overflow-h'>" +
+						     	"<a href='/posts/view/"+post["Post"]["id"]+"'>"+post["Post"]["title"]+"</a>" +
+						     	"<small>"+monthNames[monthIndex] + " " + day + ", " + year + "</small>" +
+					     	 "</div>";
+    		
+    		var outer = document.createElement('li');
+    		outer.innerHTML = template;
+    		
+    		$photostream.append(outer);
+		}
+    }
 
     return {
         init: function () {
@@ -189,6 +226,15 @@ var App = function () {
             handleMegaMenu();
             handleHoverSelector();
             handleEqualHeightColumns();
+            
+            Api({
+        		api: 1.0,
+        		type: 'POST',
+        		data: { nbPosts: 3 },
+        		controller: 'posts',
+        		method: 'recentPosts',
+        		callback: recentPosts,
+        	});
         },
 
         //Counters 

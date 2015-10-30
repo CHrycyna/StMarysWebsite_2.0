@@ -254,21 +254,7 @@
 	                    <!-- Recent Blog Entries -->
 	                    <div class="col-md-3 sm-margin-bottom-40">
 	                        <div class="heading-footer"><h2>Recent Blog Entries</h2></div>
-	                        <ul class="list-unstyled thumb-news">
-	                        	<?php foreach ($fPosts as $post): ?>
-	                        	<li>
-									<?php if(isset($post['Post']['media_type'])) :?>
-						        	<img class="img-responsive" src="/img/blog/<?php echo $post['Post']['media']?>" alt="">
-						            <?php endif; ?>	                                
-						            <div class="overflow-h">
-						            	<?php echo $this->Html->link($post['Post']['title'],
-											array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?>
-	                                    <small><?php echo date("F j, Y",strtotime($post['Post']['created'])); ?></small>
-	                                </div>
-	                            </li>
-						    	<?php endforeach; ?>
-						    	<?php unset($post); ?>
-	                        </ul>
+	                        <ul id="rPosts" class="list-unstyled thumb-news"></ul>
 	                    </div>
 	                    <!-- End Recent Blog Entries -->
 	

@@ -73,6 +73,7 @@ class DATABASE_CONFIG {
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
+		'unix_socket' => '/Applications/MAMP/tmp/mysql/mysql.sock',
 		'login' => 'chrycyna',
 		'password' => '',
 		'database' => 'StMarysWebsite',

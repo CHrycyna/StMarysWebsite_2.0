@@ -24,18 +24,14 @@ function indexMasonry(response) {
 			{
 				body = body.substring(0,maxBody-3) + "..."; 
 			}
-			
-			console.log(post);
-			
+						
 			var img = "";
 			if(post["Post"]["media"] != null) {
 				img = "<div class='blog-img'> \
 						<img class='img-responsive full-width' src='/img/blog/" + post["Post"]["media"] +"' alt=''> \
             		   </div>";
 			}
-			
-			console.log(img);
-						
+									
 			var template = "<div class='grid-boxes-caption'> \
 								" + img + "\
         						<h3><a href='/posts/view/"+post["Post"]["id"]+"'>"+post["Post"]["title"]+"</a></h3> \
@@ -60,8 +56,39 @@ function indexMasonry(response) {
 	}
 };
 
-function trendingMasonry(response) {
+function randomTags(response) {
+	var $randomTags = $("#randomTags");
 	
+	for(tag of response['data'])
+	{
+		var outer = document.createElement('li');
+		outer.innerHTML = "<a href='/posts/tag/"+tag['Tag']['tag']+"'>"+tag['Tag']['tag']+"</a>";
+		$randomTags.append(outer);
+	}
+}
+
+function trendingPosts(response) {
+	var $trending = $('#trendingPosts');
+	var monthNames = [
+	                  "January", "February", "March",
+	                  "April", "May", "June", "July",
+	                  "August", "September", "October",
+	                  "November", "December"
+	                ];
+	
+	for(post of response['data'])
+	{
+		var date = new Date(post['Post']['created']);
+		var day = date.getDate();
+		var monthIndex = date.getMonth();
+		var year = date.getFullYear();
+		var template = "<h3><a href='/posts/view/"+post["Post"]["id"]+"'>"+post["Post"]["title"]+"</a></h3>" + 
+                       "<small>"+ monthNames[monthIndex] + " " + day + ", " + year+" / <a href=''>Art,</a> <a href='#'>Lifestyles</a></small>";
+	    var outer = document.createElement('li');
+		outer.innerHTML = template;
+		
+		$trending.append(outer);
+	}
 }
 
 function recentImages(response) {	
@@ -69,6 +96,7 @@ function recentImages(response) {
 		
 	for(post of response['data'])
 	{		
+		
 		var template = "<a href='/img/blog/"+post['Post']['media']+"' rel='gallery' class='fancybox img-hover-v2' title='Image "+post['Post']['id'] +"'> \
 				<span><img class='img-responsive' src='/img/blog/"+ post['Post']['media'] +"' alt=''></span> \
 				</a>";
@@ -78,8 +106,4 @@ function recentImages(response) {
 		
 		$photostream.append(outer);
 	}
-}
-
-function recentPosts(response) {
-	
 }

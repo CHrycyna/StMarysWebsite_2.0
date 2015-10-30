@@ -144,6 +144,13 @@ class PostsController extends AppController {
 				array('Post.viewed' => 'Post.viewed+1'),
 				array('Post.id' => $id)
 		);
+				
+		$this->loadModel('PostTrend');
+		$day = jddayofweek ( cal_to_jd(CAL_GREGORIAN, date("m"),date("d"), date("Y")), 1);
+		$this->PostTrend->updateAll(
+			array('PostTrend.'.$day => 'PostTrend.'.$day.'+1'),
+			array('PostTrend.post_id' => $id)
+		);
 	}
 	
 	public function api_get()
@@ -184,13 +191,11 @@ class PostsController extends AppController {
 					'data' => $posts
 			));
 		}
-		else
-		{
-			return json_encode(array(
-					'success' => 0,
-					'message' => "Invalid Request Type"
-			));	
-		}
+
+		return json_encode(array(
+				'success' => 0,
+				'message' => "Invalid Request Type"
+		));	
 	}
 	
 	public function api_recentImages() {
@@ -198,9 +203,7 @@ class PostsController extends AppController {
 		$this->autoRender = false;
 		
 		if($this->request->is('post'))
-		{
-			$data = $this->params['data'];
-			
+		{			
 			$options = array(
 					'order' => array('Post.created DESC'),
 					'fields' => array('Post.id','Post.media'),
@@ -219,6 +222,103 @@ class PostsController extends AppController {
 					'data' => $posts
 			));
 		}
+	}
+	
+	public function api_recentPosts() {
+		$this->layout = null;
+		$this->autoRender = false;
+		
+		if($this->request->is('post'))
+		{
+			$options = array(
+				'order' => array('Post.created DESC'),
+				'fields' => array('Post.*'),
+			);
+			
+			if(isset($this->params['data']['nbPosts']) && is_numeric($this->params['data']['nbPosts']))
+			{
+				$options['limit'] = (int)$this->params['data']['nbPosts'];
+			}
+			
+			$posts = $this->Post->find('all', $options);
+			
+			return json_encode(array(
+				'success' => 1,
+				'data' => $posts
+			));
+		}
+		
+		return json_encode(array(
+			'success' => 0	
+		));
+	}
+	
+	public function api_trendingPosts() {
+		$this->layout = null;
+		$this->autoRender = false;
+		
+		if($this->request->is('post'))
+		{
+			$options = array(
+					'order' => array('PostTrend.Total DESC', 'Post.created DESC'),
+					'fields' => array('Post.*'),
+					'joins' => array(
+							array(	'table' => 'post_trends',
+									'alias' => 'PostTrend',
+									'type' => 'LEFT',
+									'conditions' => array(
+											'Post.id = PostTrend.post_id',
+									)
+							)
+					)
+			);
+				
+			if(isset($this->params['data']['nbPosts']) && is_numeric($this->params['data']['nbPosts']))
+			{
+				$options['limit'] = (int)$this->params['data']['nbPosts'];
+			}
+			
+			$posts = $this->Post->find('all', $options);
+						
+			return json_encode(array(
+					'success' => 1,
+					'data' => $posts
+			));
+		}
+		
+		return json_encode(array(
+				'success' => 0
+		));
+	}
+	
+	public function api_randomTags() {
+		$this->layout = null;
+		$this->autoRender = false;
+		$this->loadModel('Tag');
+		
+		if($this->request->is('post'))
+		{
+			$options = array(
+					'order' => array('RAND()'),
+					'fields' => array('Tag.*'),
+			);
+		
+			if(isset($this->params['data']['nbTags']) && is_numeric($this->params['data']['nbTags']))
+			{
+				$options['limit'] = (int)$this->params['data']['nbTags'];
+			}
+				
+			$posts = $this->Tag->find('all', $options);
+		
+			return json_encode(array(
+					'success' => 1,
+					'data' => $posts
+			));
+		}
+		
+		return json_encode(array(
+				'success' => 0
+		));
 	}
 }
 

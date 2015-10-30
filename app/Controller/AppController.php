@@ -55,12 +55,7 @@ class AppController extends Controller {
 	);
 	
 	public function beforeFilter() {
-		$this->Auth->allow();
-		$this->loadModel('Post');
-		$this->set('fPosts', $this->Post->find('all', array(
-				'order' => array('Post.created DESC'),
-				'limit' => 2,
-		)) );		
+		$this->Auth->allow();		
 	}
 	
 	public function isAuthorized($user) {

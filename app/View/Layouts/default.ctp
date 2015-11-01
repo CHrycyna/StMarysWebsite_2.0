@@ -51,6 +51,8 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <?php echo $this->Html->css('plugins/revolution-slider/settings.css');?>
     <!--[if lt IE 9]><?php echo $this->Html->css('plugins/revolution-slider/settings-ie8.css');?><!--[endif]-->
+    <?php echo $this->Html->css('plugins/fancybox/jquery.fancybox.css'); ?>
+    
     
     <!-- CSS Theme -->
     <?php echo $this->Html->css('theme-colors/dark-blue.css');?>
@@ -304,6 +306,7 @@
 	<!-- JS Implementing Plugins -->
 	<?php echo $this->Html->script('back-to-top.js');?>
     <?php echo $this->Html->script('plugins/smoothScroll.js');?>
+    <?php echo $this->Html->script('plugins/fancybox/jquery.fancybox.js'); ?>
 	<?php echo $this->Html->script('plugins/jquery.parallax.js');?>
 	<?php echo $this->Html->script('plugins/counter/waypoints.min.js');?>
 	<?php echo $this->Html->script('plugins/counter/jquery.counterup.min.js');?>
@@ -317,7 +320,7 @@
 	<?php echo $this->Html->script('app.js');?>
 	<?php echo $this->Html->script('api.js')?>
 	<?php echo $this->Html->script('plugins/revolution-slider.js')?>
-	<?php echo $this->fetch('script');	?>
+	<?php echo $this->Html->script('plugins/fancy-box.js'); ?>
 	
 	<script>
 	jQuery(document).ready(function() {
@@ -325,8 +328,12 @@
 	    App.initCounter();
 	    App.initParallaxBg();
 	    RevolutionSlider.initRSfullScreenOffset();
+	    FancyBox.initFancybox();
 	});
 	</script>
+	
+	<?php echo $this->fetch('script');	?>
+	
 	
 	<!--[if lt IE 9]>
 	    <script src="assets/plugins/respond.js"></script>

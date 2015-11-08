@@ -83,7 +83,7 @@ class PagesController extends AppController {
 	public function login() {
 		if($this->Auth->user())
 		{
-			//return $this->redirect($this->Auth->redirectUrl("/admin/dashboard"));
+			return $this->redirect($this->Auth->redirectUrl("/admin/dashboard"));
 		}
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {

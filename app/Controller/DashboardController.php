@@ -16,6 +16,6 @@ class DashboardController extends AppController {
 	}
 	
 	public function admin_index() {
-		echo "Here";
+		$this->layout = "default_admin";
 	}
 }

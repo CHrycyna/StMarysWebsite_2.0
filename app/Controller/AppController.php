@@ -62,7 +62,10 @@ class AppController extends Controller {
 	}
 	
 	public function beforeFilter() {
-		$this->set('authUser', $this->Auth->user());
+		if($this->Auth->user() != NULL)
+		{
+			$this->set('authUser', $this->Auth->user());
+		}
 	}
 	
 }

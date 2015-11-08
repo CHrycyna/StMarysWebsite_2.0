@@ -79,7 +79,7 @@
 	
 	                    <!-- Navbar Brand -->
 	                    <div class="navbar-brand">
-	                        <a href="index.html">
+	                        <a href="/">
 	                            <img class="shrink-logo" src="/img/logo3-dark.png" alt="Logo">
 	                        </a>
 	                    </div>

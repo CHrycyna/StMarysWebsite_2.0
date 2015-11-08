@@ -40,6 +40,8 @@ class PagesController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
+		//if($this->Auth->user() != NULL)
+			//$this->redirect("/");
 		$this->Auth->allow();
 	}
 	
@@ -83,6 +85,7 @@ class PagesController extends AppController {
 	public function login() {
 		if($this->Auth->user())
 		{
+			echo "this";
 			return $this->redirect($this->Auth->redirectUrl("/admin/dashboard"));
 		}
 		if ($this->request->is('post')) {

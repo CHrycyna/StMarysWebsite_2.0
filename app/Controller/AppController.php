@@ -35,7 +35,8 @@ class AppController extends Controller {
 	public $components = array(
 	    'Flash',
 	    'Auth' => array(
-	        'loginRedirect' => array('controller' => 'posts', 'action' => 'index'),
+	    	'loginAction'    => array('admin' => false, 'controller' => 'pages', 'action' => 'login'),
+	        'loginRedirect'  => array('admin' => true,  'controller' => 'dashboard', 'action' => 'index'),
 	        'logoutRedirect' => array(
 	            'controller' => 'pages',
 	            'action' => 'display',
@@ -62,7 +63,6 @@ class AppController extends Controller {
 	
 	public function beforeFilter() {
 		$this->set('authUser', $this->Auth->user());
-		$this->Auth->allow();
 	}
 	
 }

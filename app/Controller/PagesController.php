@@ -37,6 +37,12 @@ class PagesController extends AppController {
  */
 	public $uses = array();
 
+
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow();
+	}
+	
 /**
  * Displays a view
  *
@@ -75,15 +81,15 @@ class PagesController extends AppController {
 	}
 	
 	public function login() {
-	    if ($this->request->is('post')) {
-	        if ($this->Auth->login()) {
-	            return $this->redirect($this->Auth->redirectUrl());
-	        }
-	        $this->Flash->error(__('Invalid username or password, try again'));
-	    }
-	}
-	
-	public function logout() {
-	    return $this->redirect($this->Auth->logout());
+		if($this->Auth->user())
+		{
+			//return $this->redirect($this->Auth->redirectUrl("/admin/dashboard"));
+		}
+		if ($this->request->is('post')) {
+			if ($this->Auth->login()) {
+				return $this->redirect($this->Auth->redirectUrl());
+			}
+			$this->Flash->error(__('Invalid username or password, try again'));
+		}
 	}
 }

@@ -5,12 +5,12 @@ App::uses('AppController', 'Controller');
 class UsersController extends AppController {
 
 public function beforeFilter() {
-    parent::beforeFilter();
-	    // Allow users to register and logout.
-	    $this->Auth->deny();
+    	parent::beforeFilter();
+		if($this->Auth->user() != NULL)
+			$this->Auth->allow();
 	}
 
-	public function index() {
+	public function admin_index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
 	}
@@ -23,7 +23,7 @@ public function beforeFilter() {
 		$this->set('user', $this->User->findById($id));
 	}
 
-	public function add() {
+	public function admin_add() {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {

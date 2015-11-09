@@ -1,4 +1,20 @@
 
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<h1>
+    	Users
+            <small>New User</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="#"> Users</a></li>
+            <li class="active">Register a New User</li>
+          </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+        
 <div class="container content">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">

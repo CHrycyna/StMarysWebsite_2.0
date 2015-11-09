@@ -14,6 +14,7 @@ class DashboardController extends AppController {
 		if($this->Auth->user() != NULL)
 		{
 			$this->Auth->allow();
+			$this->layout = "default_admin";				
 		}
 	}
 	
@@ -22,6 +23,5 @@ class DashboardController extends AppController {
 	}
 	
 	public function admin_index() {
-		$this->layout = "default_admin";
 	}
 }

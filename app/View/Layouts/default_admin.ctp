@@ -199,56 +199,65 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li id="linkDashboard" ><a href="/admin"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-            <li class="active treeview">
+            <li class="treeview">
               <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-users"></i> <span>Users</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                <li><a href="/admin/users"><i class="fa fa-circle-o"></i> View Users</a></li>
+                <li><a href="/admin/users/add"><i class="fa fa-circle-o"></i> Add New User</a></li>  
               </ul>
             </li>
-            
-            <li class="header">LABELS</li>
-            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-rss"></i> <span>Blog</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="#"><i class="fa fa-circle-o"></i> View Posts</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i> Add Post</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-calendar"></i> <span>Events</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="#"><i class="fa fa-circle-o"></i> View Events</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i> Add New Event</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-cogs"></i> <span>Content Manager</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="#"><i class="fa fa-circle-o"></i> Store Hours</a></li>
+              </ul>
+            </li>
           </ul>
         </section>
         <!-- /.sidebar -->
       </aside>
 
+
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            Dashboard
-            <small>Version 2.0</small>
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
-          </ol>
-        </section>
+      	<?php echo $this->fetch('content'); ?>
+		<?php echo $this->element('sql_dump'); ?>
+        
+    		
+      </div><!-- /.content-wrapper -->
 
-        <!-- Main content -->
-        <section class="content">
-    		<?php echo $this->fetch('content'); ?>
-			<?php echo $this->element('sql_dump'); ?>
-        </section><!-- /.content -->
-                          </div><!-- /.content-wrapper -->
+      <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+          <b>Version</b> 1.0.0
+        </div>
+        <strong>Copyright &copy; 2015-2016 <a href="mailto:cameron.hrycyna@gmail.com?Subject=St.Mary's%20Website%20-%20Admin">Cameron Hrycyna</a>.</strong> All rights reserved.
+      </footer>
 
-                          <footer class="main-footer">
-                          <div class="pull-right hidden-xs">
-                          <b>Version</b> 1.0.0
-                          </div>
-                          <strong>Copyright &copy; 2015-2016 <a href="mailto:cameron.hrycyna@gmail.com?Subject=St.Mary's%20Website%20-%20Admin">Cameron Hrycyna</a>.</strong> All rights reserved.
-                          </footer>
-
-                          <!-- Control Sidebar -->
-                          <aside class="control-sidebar control-sidebar-dark">
-                          <!-- Create the tabs -->
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+      	<!-- Create the tabs -->
                           <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
                           <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
                           <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
@@ -419,11 +428,15 @@
 	  <?php echo $this->Html->script('/plugins/bootstrap/js/bootstrap.min.js');?>
 	  
 	  <!-- JS Implementing Plugins -->
+	  <?php echo $this->Html->script('/plugins/fastclick/fastclick.js'); ?>
       <?php echo $this->Html->script('/js/app-admin.js');?>
       <?php echo $this->Html->script('/plugins/sparkline/jquery.sparkline.min.js');?>
       <?php echo $this->Html->script('/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js');?>
       <?php echo $this->Html->script('/plugins/jvectormap/jquery-jvectormap-world-mill-en.js');?>
       <?php echo $this->Html->script('/plugins/slimScroll/jquery.slimscroll.min.js');?>
       <?php echo $this->Html->script('/plugins/chartjs/Chart.min.js');?>
+      
+      <?php echo $this->fetch('script'); ?>
+      
       </body>
       </html>

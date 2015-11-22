@@ -19,6 +19,10 @@ var Users = function() {
 		
 	}
 	
+	function registrationResponse(response) {
+		console.log(response);
+	}
+	
 	return {
 		viewUsers: function() {
 			Api({
@@ -30,9 +34,51 @@ var Users = function() {
 				callback: showUsers,
 			});
 		},
-		registerForm: function (form) {
-			var $form =  $(form);
-			console.log("register");
+		registerForm: function () {
+			$email = $("#userEmail");
+			$password = $("#userPassword1");
+			$first = $("#userFirstName");
+			$last = $("#userLastName");
+			$username = $("#userUsername");
+			$role = $("#userRole");
+			
+			var jsonEmail = new Object();
+			jsonEmail.name = 'email';
+			jsonEmail.value = $email.val();
+			var jsonPassword = new Object();
+			jsonPassword.name = 'password';
+			jsonPassword.value = $password.val();
+			var jsonFirst = new Object();
+			jsonFirst.name = 'first';
+			jsonFirst.value = $first.val();
+			var jsonLast = new Object();
+			jsonLast.name = 'last';
+			jsonLast.value = $last.val();
+			var jsonUsername = new Object();
+			jsonUsername.name = 'username';
+			jsonUsername.value = $username.val();
+			var jsonRole = new Object();
+			jsonRole.name = 'role';
+			jsonRole.value = $role.val();
+	
+			var ArrayArg = new Array();
+			ArrayArg.push(jsonEmail);
+			ArrayArg.push(jsonPassword);
+			ArrayArg.push(jsonFirst);
+			ArrayArg.push(jsonLast);
+			ArrayArg.push(jsonUsername);
+			ArrayArg.push(jsonRole);
+
+		    var data = JSON.parse(JSON.stringify(ArrayArg))
+			
+		    Api({
+				api: 1.0,
+				type: 'POST',
+				data: data,
+				controller: 'users',
+				method: 'register',
+				callback: registrationResponse,
+			});
 		},
 	};
 }();

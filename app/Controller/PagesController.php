@@ -88,7 +88,7 @@ class PagesController extends AppController {
 				$this->loadModel('User');
 				$this->User->updateAll(
 						array('User.last_login' => 'CURRENT_TIMESTAMP'),
-						array('User.id' => 1)
+						array('User.id' => $this->Auth->user()['id'])
 				);
 				return $this->redirect($this->Auth->redirectUrl());
 			}

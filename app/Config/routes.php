@@ -27,6 +27,7 @@
  */
 	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 	Router::connect("/admin", array('admin' => true, 'controller' => 'dashboard', 'action' => 'index'));
+	Router::connect("/admin/unauthorized", array('admin' => true, 'controller' => 'dashboard', 'action' => 'unauthorized'));
 	Router::connect("/admin/login", array('controller' => 'pages', 'action' => 'login'));
 	Router::connect("/logout", array('controller' => 'dashboard', 'action' => 'logout'));
 /**

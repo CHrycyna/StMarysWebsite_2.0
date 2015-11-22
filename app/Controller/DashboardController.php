@@ -24,4 +24,7 @@ class DashboardController extends AppController {
 	
 	public function admin_index() {
 	}
+	
+	public function admin_unauthorized() {
+	}
 }

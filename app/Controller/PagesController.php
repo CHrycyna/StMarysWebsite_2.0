@@ -83,13 +83,13 @@ class PagesController extends AppController {
 	}
 	
 	public function login() {
-		if($this->Auth->user())
-		{
-			echo "this";
-			return $this->redirect($this->Auth->redirectUrl("/admin/dashboard"));
-		}
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
+				$this->loadModel('User');
+				$this->User->updateAll(
+						array('User.last_login' => 'CURRENT_TIMESTAMP'),
+						array('User.id' => 1)
+				);
 				return $this->redirect($this->Auth->redirectUrl());
 			}
 			$this->Flash->error(__('Invalid username or password, try again'));

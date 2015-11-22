@@ -157,7 +157,7 @@
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -429,12 +429,14 @@
 	  
 	  <!-- JS Implementing Plugins -->
 	  <?php echo $this->Html->script('/plugins/fastclick/fastclick.js'); ?>
-      <?php echo $this->Html->script('/js/app-admin.js');?>
       <?php echo $this->Html->script('/plugins/sparkline/jquery.sparkline.min.js');?>
       <?php echo $this->Html->script('/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js');?>
       <?php echo $this->Html->script('/plugins/jvectormap/jquery-jvectormap-world-mill-en.js');?>
       <?php echo $this->Html->script('/plugins/slimScroll/jquery.slimscroll.min.js');?>
       <?php echo $this->Html->script('/plugins/chartjs/Chart.min.js');?>
+      
+      <?php echo $this->Html->script('/js/app-admin.js');?>
+      <?php echo $this->Html->script('api.js')?>
       
       <?php echo $this->fetch('script'); ?>
       

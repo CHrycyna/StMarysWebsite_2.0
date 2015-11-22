@@ -11,4 +11,32 @@
 </section>
 <!-- Main content -->
 <section class="content">
+	<div class="table-responsive">
+	  <table id="usersTable" class="table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Last Login</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+	</div>
 </section>
+
+<?php $this->Html->script('users.js', array('inline' => false));?>
+<?php 
+$this->Html->scriptStart(array('inline' => false));
+
+echo "jQuery(document).ready(function() {
+	Users.viewUsers();
+});";
+
+$this->Html->scriptEnd();
+?>

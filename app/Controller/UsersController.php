@@ -35,23 +35,21 @@ public function beforeFilter() {
         $this->set('roles', $roles);
 	}
 
-	public function edit($id = null) {
-		$this->User->id = $id;
-		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Invalid user'));
+	public function admin_edit($username = null) {
+		if(!$this->isAuthorized($this->Auth->user()))
+		{
+			return $this->redirect(array('controller' => 'dashboard','action' => 'unauthorized'));
 		}
-		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->User->save($this->request->data)) {
-				$this->Flash->success(__('The user has been saved'));
-				return $this->redirect(array('action' => 'index'));
-			}
-			$this->Flash->error(
-					__('The user could not be saved. Please, try again.')
-			);
-		} else {
-			$this->request->data = $this->User->findById($id);
-			unset($this->request->data['User']['password']);
-		}
+		
+		$this->loadModel('Role');
+		$roles = $this->Role->find('all');
+		$this->set('roles', $roles);
+		
+		$result = $this->User->findByUsername($username);
+
+		$this->set('user', $result);
+		//unset($user['User']['password']);
+		//unset($result['User']['password']);
 	}
 
 	public function delete($id = null) {
@@ -122,6 +120,40 @@ public function beforeFilter() {
 						'status_text' => "User Successfully Added",
 						'data' => null
 				));
+		}
+		return json_encode(array(
+				'status_code' => 0,
+				'status_text' => "Invalid Request Type",
+				'data' => NULL
+		));
+	}
+	
+	public function api_edit() {
+		$this->layout = null;
+		$this->autoRender = false;
+		
+		if($this->request->is('post'))
+		{
+			$data = $this->request->data;
+			
+			$user = array(
+				"id" => $data['id'],
+				"email" => $data['email'],
+				"username" => $data['username'],
+				"firstname" => $data['first'],
+				"lastname" => $data['last'],
+				"role_id" => $data['role'],
+				"modified" => date('Y/m/d h:i:s', time()),
+			);
+		
+			// This will update Recipe with id 10
+			$this->User->save($user);
+			
+			return json_encode(array(
+				'status_code' => 200,
+				'status_text' => "User has successfully been updated",
+				'data' => null
+			)); 
 		}
 		return json_encode(array(
 				'status_code' => 0,

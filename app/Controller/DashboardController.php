@@ -27,4 +27,7 @@ class DashboardController extends AppController {
 	
 	public function admin_unauthorized() {
 	}
+	
+	public function api_latest_logins() {
+	}
 }

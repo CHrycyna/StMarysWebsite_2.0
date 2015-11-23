@@ -205,7 +205,9 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="/admin/users"><i class="fa fa-circle-o"></i> View Users</a></li>
+                <?php if($authUser['role_id'] < 2) : ?>
                 <li><a href="/admin/users/add"><i class="fa fa-circle-o"></i> Add New User</a></li>  
+                <?php endif; ?>
               </ul>
             </li>
             <li class="treeview">

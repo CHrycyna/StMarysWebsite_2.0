@@ -233,7 +233,7 @@
                 <i class="fa fa-cogs"></i> <span>Content Manager</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Store Hours</a></li>
+                <li><a href="/admin/storehours"><i class="fa fa-circle-o"></i> Store Hours</a></li>
               </ul>
             </li>
           </ul>

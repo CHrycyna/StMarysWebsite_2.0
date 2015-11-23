@@ -13,7 +13,8 @@ class StoreHoursController extends AppController {
 	}
 	
 	public function admin_index() {
-		
+		$hours = $this->StoreHour->find('all');
+		$this->set('hours', $hours);
 	}
 }
 ?>

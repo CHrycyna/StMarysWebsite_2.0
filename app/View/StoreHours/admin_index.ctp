@@ -34,7 +34,16 @@
 		                		<?php foreach($hours as $hour) :?>
 			                	<tr role="row">
 			                  		<td><?php echo $hour['StoreHour']['day']; ?></td>
-					                <td><?php echo $hour['StoreHour']['open']; ?></td>
+					                <td>
+					                	<div class="form-group">
+											<div class="input-group">
+                    							<input type="text" class="form-control timepicker" value="<?php echo $hour['StoreHour']['open']; ?>">
+												<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>
+                  							</div>
+                  							<!-- /.input group -->
+                						</div>
+                							
+                					</td>
 					                <td><?php echo $hour['StoreHour']['close']; ?></td>
 					                <td><a class="btn btn-default" href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o"></i></a></td>
 				                </tr>

@@ -175,6 +175,88 @@ var App = function () {
         jQuery('.popovers-toggle').popover('toggle');
         jQuery('.popovers-destroy').popover('destroy');
     }
+    
+    function loadStoreHoursResponse(response) {
+    	var data = response['data']['store_hours'];
+		$storehours = $('.store-hours');
+
+		for (var day of data) {
+			$outer = $('<div class="row"></div>');
+			
+			var dayDiv = document.createElement('div');
+			dayDiv.className = 'day col-xs-4';
+			dayDiv.innerHTML += day["day"];
+			$outer.append(dayDiv);
+			
+			var hoursDiv = document.createElement('div');
+			hoursDiv.className = 'hours col-xs-8';
+			
+			if(day["closed"])
+			{
+				hoursDiv.innerHTML += "Closed";
+			}
+			else
+			{
+				hoursDiv.innerHTML += day["open"] + " - "+ day["close"];
+			}
+			if(day["holiday"])
+			{
+				hoursDiv.innerHTML += " <i class='fa fa-info-circle' data-toggle=\"tooltip\" data-placement=\"right\" title=\""+day["holiday"]+"\"></i>"
+			}
+			$outer.append(hoursDiv);
+			$storehours.append($outer);
+		}
+		$('[data-toggle="tooltip"]').tooltip();
+    }
+    
+    function loadBlogEntries(response) {
+    	var data = response['data'];
+		$posts = $('#rPosts');
+		var monthNames = [
+		                  "January", "February", "March",
+		                  "April", "May", "June", "July",
+		                  "August", "September", "October",
+		                  "November", "December"
+		                ];
+
+		for (var post of data) {
+			console.log(post['Post']);
+			var date = new Date(post['Post']['created']);
+			var day = date.getDate();
+			var monthIndex = date.getMonth();
+			var year = date.getFullYear();
+			var postDate = monthNames[monthIndex] + ' ' + day + ", " + year;
+			$li = $('<li></li>');
+			
+			if(post['Post']['post_type_id']) {
+	            //<img class="radius-3x" src="assets/img/thumb/01.jpg" alt="">
+				$img = $('<img class="radius-3x" src="/img/blog/' + post['Post']['media'] + '">');
+				$li.append($img);
+			}
+			$div = $('<div class="overflow-h"><a href="/posts/view/'+post['Post']['id']+'">'+post['Post']['title']+'</a><small>'+postDate+'</small></div>');
+			$li.append($div);
+			$posts.append($li);
+		}
+    }
+    
+    function loadTemplateContent() {
+    	 Api({
+ 			api: 1.0,
+ 			type: 'POST',
+ 			data: null,
+ 			controller: 'storehours',
+ 			method: 'hours',
+ 			callback: loadStoreHoursResponse,
+ 		});
+    	 Api({
+  			api: 1.0,
+  			type: 'POST',
+  			data: { "nbPosts" : 3 },
+  			controller: 'posts',
+  			method: 'recentPosts',
+  			callback: loadBlogEntries,
+  		});
+    }
 
     return {
         init: function () {
@@ -189,6 +271,7 @@ var App = function () {
             handleMegaMenu();
             handleHoverSelector();
             handleEqualHeightColumns();
+            loadTemplateContent();
         },
 
         //Counters 

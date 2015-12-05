@@ -1,3 +1,6 @@
+<?php $this->Html->css('/plugins/timepicker/bootstrap-timepicker.css', array('inline' => false)); ?>
+
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
 	<h1>
@@ -57,3 +60,17 @@
         	</div>
    	</div>
 </section>
+
+<?php echo $this->Html->script('/plugins/timepicker/bootstrap-timepicker.js', array('inline' => false)); ?>
+<?php echo $this->Html->scriptStart(array('inline' => false));
+
+echo "
+      jQuery(document).ready(function() {
+      	    //Timepicker
+        	$(\".timepicker\").timepicker({
+          		showInputs: false
+       	 	});
+	   });";
+
+$this->Html->scriptEnd();
+

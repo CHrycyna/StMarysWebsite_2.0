@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class UsersController extends AppController {
 
-public function beforeFilter() {
+	public function beforeFilter() {
     	parent::beforeFilter();
 		if($this->Auth->user() != NULL)
 		{

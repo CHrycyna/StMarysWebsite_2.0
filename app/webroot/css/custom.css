@@ -1,1 +1,11 @@
 /* Add here all your css styles (customizations) */
+
+.store-hours {
+	margin: 0 0 10px;
+	padding: 0 0 0 0;
+    color: #777;
+}
+[data-toggle="tooltip"] {
+    cursor: pointer;
+    display:inline-block; /* chrome-fix */
+}

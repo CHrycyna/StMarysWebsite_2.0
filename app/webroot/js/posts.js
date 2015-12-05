@@ -46,7 +46,7 @@ var Blog = function () {
 				
 				var inner = "<div class='grid-boxes-caption'> \
 						 		"+imgElement+" \
-						 		<h3><a href='/posts/view/{ID}'>"+title+"</a></h3> \
+						 		<h3><a href='/posts/view/"+post['Post']['id']+"'>"+title+"</a></h3> \
 						 		<ul class='list-inline grid-boxes-news'> \
 						 			<li><i class='fa fa-calendar'></i> "+postDate+"</li> \
 									<li><i class='fa fa-pencil'></i> <a href='/posts/author/"+author+"'>"+author+"</a></li> \

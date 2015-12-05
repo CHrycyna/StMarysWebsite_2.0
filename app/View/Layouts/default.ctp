@@ -217,8 +217,10 @@
 	                <div class="row">
 	                    <!-- About Us -->
 	                    <div class="col-md-3 sm-margin-bottom-40">
-	                        <div class="heading-footer"><h2>About Us</h2></div>
-	                        <p>Today we continue the basis of our historical roots while changing with the times. Our gift shop is a "realm of shops within shops" , comprised of the latest in home décor and gift extending into local & world gourmet; while featuring unique and latest fashions from Canada and abroad.</p><br>
+	                        <div class="heading-footer"><h2>Store Hours</h2></div>
+							<div class="container-fluid store-hours"></div>
+							<div><p><i class='fa fa-info-circle'></i> = Special Hours</p></div>
+							<!-- End Store Hours -->
 	                        <ul class="list-inline dark-social-v2">
 	                            <li><a href="https://www.facebook.com/pages/St-Marys-Nursery-and-Garden-Centre-Ltd/128776243867073"><i class="rounded-sm fa fa-facebook"></i></a></li>
 	                            <li><a href="https://twitter.com/StMarysNursery"><i class="rounded-sm fa fa-twitter"></i></a></li>
@@ -322,7 +324,7 @@
 	<?php echo $this->Html->script('plugins/revolution-slider.js')?>
 	<?php echo $this->Html->script('plugins/fancy-box.js'); ?>
 	
-	<script>
+	<script>	
 	jQuery(document).ready(function() {
 	    App.init();
 	    App.initCounter();

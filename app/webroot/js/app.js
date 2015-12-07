@@ -5,6 +5,12 @@
  * Author: @htmlstream
  * Website: http://htmlstream.com
 */
+var K = function () {
+    var a = navigator.userAgent;
+    return {
+        ie: a.match(/MSIE\s([^;]*)/)
+    }
+}();
 
 var App = function () {
     //Fixed Header
@@ -175,6 +181,57 @@ var App = function () {
         jQuery('.popovers-toggle').popover('toggle');
         jQuery('.popovers-destroy').popover('destroy');
     }
+
+	
+	function link(tweet) {
+		return tweet.replace(/\b(((https*\:\/\/)|www\.)[^\"\']+?)(([!?,.\)]+)?(\s|$))/g, function(link, m1, m2, m3, m4) {
+			var http = m2.match(/w/) ? 'http://' : '';
+			return '<a class="twtr-hyperlink" target="_blank" href="' + http + m1 + '">' + ((m1.length > 25) ? m1.substr(0, 24) + '...' : m1) + '</a>' + m4;
+        });
+	}
+	 
+	function at(tweet) {
+        return tweet.replace(/\B[@]([a-zA-Z0-9_]{1,20})/g, function(m, username) {
+    		return '<a target="_blank" class="twtr-atreply" href="http://twitter.com/intent/user?screen_name=' + username + '">@' + username + '</a>';
+        });
+	}
+	 
+	function list(tweet) {
+		return tweet.replace(/\B[@]([a-zA-Z0-9_]{1,20}\/\w+)/g, function(m, userlist) {
+			return '<a target="_blank" class="twtr-atreply" href="http://twitter.com/' + userlist + '">@' + userlist + '</a>';
+	    });
+	}
+	 
+	function hash(tweet) {
+		return tweet.replace(/(^|\s+)#(\w+)/gi, function(m, before, hash) {
+			return before + '<a target="_blank" class="twtr-hashtag" href="http://twitter.com/search?q=%23' + hash + '">#' + hash + '</a>';
+        });
+	}
+	 
+	function clean(tweet) {
+		return hash(at(list(link(tweet))));
+	}
+	
+	function timeAgo(tdate) {
+		var system_date = new Date(Date.parse(tdate));
+	    var user_date = new Date();
+	    if (K.ie) {
+	        system_date = Date.parse(tdate.replace(/( \+)/, ' UTC$1'))
+	    }
+	    var diff = Math.floor((user_date - system_date) / 1000);
+	    if (diff <= 1) {return "just now";}
+	    if (diff < 20) {return diff + " seconds ago";}
+	    if (diff < 40) {return "half a minute ago";}
+	    if (diff < 60) {return "less than a minute ago";}
+	    if (diff <= 90) {return "one minute ago";}
+	    if (diff <= 3540) {return Math.round(diff / 60) + " minutes ago";}
+	    if (diff <= 5400) {return "1 hour ago";}
+	    if (diff <= 86400) {return Math.round(diff / 3600) + " hours ago";}
+	    if (diff <= 129600) {return "1 day ago";}
+	    if (diff < 604800) {return Math.round(diff / 86400) + " days ago";}
+	    if (diff <= 777600) {return "1 week ago";}
+	    return "on " + system_date;
+    }
     
     function loadStoreHoursResponse(response) {
     	var data = response['data']['store_hours'];
@@ -220,7 +277,6 @@ var App = function () {
 		                ];
 
 		for (var post of data) {
-			console.log(post['Post']);
 			var date = new Date(post['Post']['created']);
 			var day = date.getDate();
 			var monthIndex = date.getMonth();
@@ -236,6 +292,23 @@ var App = function () {
 			$div = $('<div class="overflow-h"><a href="/posts/view/'+post['Post']['id']+'">'+post['Post']['title']+'</a><small>'+postDate+'</small></div>');
 			$li.append($div);
 			$posts.append($li);
+		}
+    }
+    
+    function loadTweetsResponse(response) {
+    	console.log(response);
+		$tweets = $('.tweets');
+    	var data = response['data'];
+
+    	
+		var username = data['username'];
+		
+		for (var tweet of data['tweets']) {
+			$li = $('<li><i class="fa fa-twitter"></i></li>');
+			$div = $("<div class=\"overflow-h\"><p><a href=\"#\">@"+username+" </a>"+clean(tweet['text'])+"</p></div>");
+			$div.append("<small>"+timeAgo(tweet['date'])+"</small>");
+			$li.append($div);
+			$tweets.append($li);
 		}
     }
     
@@ -256,6 +329,14 @@ var App = function () {
   			method: 'recentPosts',
   			callback: loadBlogEntries,
   		});
+    	 Api({
+    		 api: 1.0,
+   			 type: 'POST',
+   			 data: null,
+   			 controller: 'twitter',
+   			 method: 'gettweets',
+   			 callback: loadTweetsResponse,
+    	 });
     }
 
     return {

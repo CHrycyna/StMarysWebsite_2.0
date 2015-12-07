@@ -1,0 +1,9 @@
+[submodule "app/Plugin/Rest"]
+	path = app/Plugin/Rest
+	url = https://github.com/nojimage/CakePHP-ReST-DataSource-Plugin.git
+[submodule "app/Plugin/Twim"]
+	path = app/Plugin/Twim
+	url = https://github.com/nojimage/CakePHP-Twim.git
+[submodule "app/Vendor/twitteroauth"]
+	path = app/Vendor/twitteroauth
+	url = https://github.com/voycey/twitteroauth.git

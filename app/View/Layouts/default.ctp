@@ -265,22 +265,7 @@
 	                    <!-- Latest Tweets -->
 	                    <div class="col-md-3">
 	                        <div class="heading-footer"><h2>Latest Tweets</h2></div>
-	                        <ul class="list-unstyled tweets">
-	                            <li>
-	                                <i class="fa fa-twitter"></i>
-	                                <div class="overflow-h">
-	                                    <p><a href="#">@Toronto </a>voluptates repudiandae sint et molestiae non recusandae.</p>
-	                                    <small>3 Hours ago</small>
-	                                </div>
-	                            </li>
-	                            <li>
-	                                <i class="fa fa-twitter"></i>
-	                                <div class="overflow-h">
-	                                    <p><a href="#">@Twitter </a>Maecenas pharetra tellus et fringilla. Praesent ut consectetur diam.</p>
-	                                    <small>7 Hours ago</small>
-	                                </div>
-	                            </li>
-	                        </ul>
+	                        <ul class="list-unstyled tweets"></ul>
 	                    </div>
 	                    <!-- End Latest Tweets -->
 	                </div>

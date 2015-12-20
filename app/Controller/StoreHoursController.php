@@ -20,6 +20,37 @@ class StoreHoursController extends AppController {
 	public function admin_index() {
 		$hours = $this->StoreHour->find('all');
 		$this->set('hours', $hours);
+		
+		$this->loadModel('HolidayHour');
+		$sHours = $this->HolidayHour->find('all');
+		$this->set('sHours', $sHours);
+	}
+	
+	public function api_getHours() {
+		$this->layout = null;
+		$this->autoRender = false;
+		$this->request->allowMethod('post');
+		
+		if(!isset($this->params['data']['id']) || !is_numeric($this->params['data']['id']))
+		{
+			return json_encode(array(
+					'status_code' => 400,
+					'status_text' => "ID must specific and be a numeric value"
+			));
+		}
+		
+		$result = $this->StoreHour->query("SELECT sh.id, sh.open, sh.close FROM `csy_store_hours` as sh WHERE sh.id = {$this->params['data']['id']}");
+		
+		$ret = array('id' => $this->params['data']['id']);
+		$ret['open'] = date("g:i a", strtotime($result[0]['sh']['open']));
+		$ret['close'] = date("g:i a", strtotime($result[0]['sh']['close']));
+		
+		return json_encode(array(
+				'status_code' => 200,
+				'status_text' => "Success",
+				'data' => array("hours" => $ret
+				)
+		));
 	}
 	
 	public function api_hours() {
@@ -63,7 +94,6 @@ class StoreHoursController extends AppController {
 		$this->autoRender = false;
 		$this->request->allowMethod('post');
 		
-		
 		if(!isset($this->params['data']['id']) || !is_numeric($this->params['data']['id']))
 		{
 			return json_encode(array(
@@ -90,7 +120,8 @@ class StoreHoursController extends AppController {
 			return json_encode(array(
 					'status_code' => 200,
 					'status_text' => "Failure",
-					'data' => 'Closing time must be after opening time'
+					'details' => 'Closing time must be after opening time',
+					'data' => null
 			));
 		}
 		
@@ -99,7 +130,8 @@ class StoreHoursController extends AppController {
 		return json_encode(array(
 				'status_code' => 200,
 				'status_text' => "Success",
-				'data' => $result
+				'details' => 'Successfully updated store hours.',
+				'data' => array ( 'id' => $id )
 		));
 	}
 }

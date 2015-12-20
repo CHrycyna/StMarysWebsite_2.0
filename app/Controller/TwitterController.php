@@ -45,24 +45,25 @@ class TwitterController extends AppController{
 		# Migrate over to SSL/TLS
 		$twitter->ssl_verifypeer = true;
 		# Load the Tweets
+		
 		$tweets = $twitter->get('statuses/user_timeline', array('screen_name' => TWITTER_USERNAME, 'exclude_replies' => 'true', 'include_rts' => 'true', 'count' => TWEET_LIMIT));
 		# Example output
-		
+				
 		$ret = array();
 		$ret["username"] = TWITTER_USERNAME;
-		$myTweet = array();
+		$myTweets = array();
 				
 		if(!empty($tweets)) {
 		    foreach($tweets as $tweet) {
 		    	$t = array();
 		    	$t["text"] = $tweet['text'];
 		        $t["date"] = $tweet['created_at'];
-		        array_push($myTweet, $t);
+		        array_push($myTweets, $t);
 		    }
 		  
 		}
 		
-		$ret["tweets"] = $myTweet;
+		$ret["tweets"] = $myTweets;
 		
 		
 		// set the tweets to my view

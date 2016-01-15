@@ -226,3 +226,302 @@ You can also add some CSS styles for your pages at: %s.',
 	<li><a href="http://cakefoundation.org"><?php echo __d('cake_dev', 'Cake Software Foundation'); ?> </a>
 	<ul><li><?php echo __d('cake_dev', 'Promoting development related to CakePHP'); ?></li></ul></li>
 </ul>
+
+<div class="container">
+<?php 
+
+$winning = array ('8', '27', '34', '4', '19');
+$powerplay = 10;
+
+$mynumbs = array (
+		//Ticket 51-52
+		array(
+			"reg" => array ( 1,18,22,37,44),
+			"power" => 22
+		),
+		array ( 
+			"reg" => array ( 4, 6,31,48,56),
+			"power" => 14,
+		),
+		// Ticket 1 - 10
+		array(
+				"reg" => array ( 16,21,43,45,53),
+				"power" => 1
+		),
+		array(
+				"reg" => array ( 3,13,16,47,64),
+				"power" => 1
+		),
+		array(
+				"reg" => array ( 13,16,18,54,69),
+				"power" => 17
+		),
+		array(
+				"reg" => array ( 1,35,37,51,60),
+				"power" => 25
+		),
+		array(
+				"reg" => array ( 27,34,36,44,59),
+				"power" => 26
+		),
+		array(
+				"reg" => array ( 14,15,16,40,47),
+				"power" => 3
+		),
+		array(
+				"reg" => array ( 12,30,54,63,66),
+				"power" => 11
+		),
+		array(
+				"reg" => array ( 12,15,22,31,65),
+				"power" => 19
+		),
+		array(
+				"reg" => array ( 15,22,43,47,49),
+				"power" => 24
+		),
+		array(
+				"reg" => array ( 2,3,19,41,46),
+				"power" => 9
+		),
+		//Ticket 11 - 20
+		array(
+				"reg" => array ( 2,15,41,57,64),
+				"power" => 10
+		),
+		array(
+				"reg" => array (4,7,13,35,56),
+				"power" => 24
+		),
+		array(
+				"reg" => array ( 3,7,49,53,69),
+				"power" => 21
+		),
+		array(
+				"reg" => array ( 3,8,11,37,69),
+				"power" => 5
+		),
+		array(
+				"reg" => array (23,31,34,50,58),
+				"power" =>20
+		),
+		array(
+				"reg" => array (2,11,17,24,40 ),
+				"power" =>24
+		),
+		array(
+				"reg" => array ( 21,28,52,60,67),
+				"power" =>22
+		),
+		array(
+				"reg" => array (20,25,46,55,57 ),
+				"power" =>23
+		),
+		array(
+				"reg" => array (11,46,55,59,68 ),
+				"power" =>6
+		),
+		array(
+				"reg" => array ( 13,29,39,52,61),
+				"power" =>6
+		),
+		//Ticket 21 - 30
+		array(
+				"reg" => array ( 1,14,22,27,67),
+				"power" =>11
+		),
+		array(
+				"reg" => array ( 4,6,17,37,47),
+				"power" =>7
+		),
+		array(
+				"reg" => array ( 1,16,44,48,68),
+				"power" =>22
+		),
+		array(
+				"reg" => array (4,5,27,54,55 ),
+				"power" =>18
+		),
+		array(
+				"reg" => array (1,21,32,40,66 ),
+				"power" =>25
+		),
+		array(
+				"reg" => array (3,8,30,42,54 ),
+				"power" =>26
+		),
+		array(
+				"reg" => array ( 27,36,40,44,45),
+				"power" =>9
+		),
+		array(
+				"reg" => array (8,32,36,51,67),
+				"power" =>6
+		),
+		array(
+				"reg" => array (7,9,17,58,69),
+				"power" =>5
+		),
+		array(
+				"reg" => array (17,30,33,45,50 ),
+				"power" =>13
+		),
+		//Ticket 31 - 40
+		array(
+				"reg" => array (8,16,43,45,58),
+				"power" =>25
+		),
+		array(
+				"reg" => array (2,10,30,47,58),
+				"power" =>20
+		),
+		array(
+				"reg" => array (5,12,32,46,60),
+				"power" =>25
+		),
+		array(
+				"reg" => array (8,53,62,66,68),
+				"power" =>3
+		),
+		array(
+				"reg" => array (16,47,52,53,58),
+				"power" =>25
+		),
+		array(
+				"reg" => array (3,21,31,57,65),
+				"power" =>20
+		),
+		array(
+				"reg" => array (1,2,41,42,48),
+				"power" =>19
+		),
+		array(
+				"reg" => array (8,15,19,29,31),
+				"power" =>2
+		),
+		array(
+				"reg" => array (12,14,29,32,45),
+				"power" => 9
+		),
+		array(
+				"reg" => array (17,46,53,56,63),
+				"power" =>16
+		),
+		//Ticket 41 - 50
+		array(
+				"reg" => array (31,42,46,57,60),
+				"power" =>25
+		),
+		array(
+				"reg" => array (9,33,59,65,66),
+				"power" =>25
+		),
+		array(
+				"reg" => array (15,31,39,42,43),
+				"power" =>24
+		),
+		array(
+				"reg" => array (8,31,33,38,56),
+				"power" =>7
+		),
+		array(
+				"reg" => array (2,4,8,22,5),
+				"power" =>11
+		),
+		array(
+				"reg" => array (19,27,50,53,59),
+				"power" =>20
+		),
+		array(
+				"reg" => array (3,10,26,64,54),
+				"power" =>3
+		),
+		array(
+				"reg" => array (23,40,44,50,53),
+				"power" =>7
+		),
+		array(
+				"reg" => array (15,28,58,60,68),
+				"power" =>5
+		),
+		array(
+				"reg" => array (2,34,43,63,66),
+				"power" =>5
+		),
+		);
+
+?>
+<table class="table table-striped">
+	<thead>
+        <tr>
+        	<th>Ball 1</th>
+           	<th>Ball 2</th>
+           	<th>Ball 3</th>
+            <th>Ball 4</th>
+            <th>Ball 5</th>
+            <th>Power Play</th>
+        </tr>
+     	<tr>
+        	<th>4</th>
+           	<th>8</th>
+           	<th>19</th>
+            <th>27</th>
+            <th>34</th>
+            <th>14</th>
+            <th>Count Reg</th>
+            <th>Match PP</th>
+            <th>Prize</th>
+        </tr>
+
+    </thead>
+    <tbody>	
+<?php foreach($mynumbs as $entry)
+{
+	echo "<tr>";
+	$count = 0;
+	foreach($entry["reg"] as $num)
+	{
+		if(in_array($num, $winning))
+		{
+			echo "<td><span class='text-highlights text-highlights-red rounded-2x'>" . $num . "</span></td>";
+				
+			$count++;	
+		}
+		else
+		{
+			echo "<td>" . $num . "</td>";
+		}
+	}
+	if($entry['power'] == $powerplay)
+	{
+		echo "<td><span class='text-highlights text-highlights-red rounded-2x'>" . $entry['power'] . "</span></td>";
+		echo "<td>" . $count . "</td>";
+		echo "<td>Match</td>";
+	}
+	else
+	{
+		echo "<td>" . $entry['power'] . "</td>";
+		echo "<td>" . $count . "</td>";
+		echo "<td> - </td>";
+	}
+
+	if($count > 1 || $entry['power'] ==$powerplay )
+	{
+		echo "<td>Winner";
+		if($entry['power'] == $powerplay)
+		{
+			echo " X2";
+		}
+		echo"</td>";
+	}
+	else
+	{
+		echo "<td> - </td>";
+	}
+	echo "</tr>";
+	
+}
+?>
+
+</table>
+</div>

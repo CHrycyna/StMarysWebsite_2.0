@@ -13,7 +13,7 @@ var StoreHours = function() {
             			"<strong>Success!</strong> "+message);
 		
 		$alert.append($sAlert);
-		$sAlert.fadeTo(2000, 500).slideUp(500, function(){
+		$sAlert.fadeTo(2000, 500).slideUp(1000, function(){
 		    $sAlert.remove();
 		});
 	}
